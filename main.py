@@ -172,20 +172,20 @@ def mostrar_coordenadas():
 nventana=False
 Colores=colores()
 window=Tk() 
-window.iconbitmap(os.path.join(os.path.dirname(__file__),'Img\FAVICONCOLOR.ico')) #agregamos ico para window con ruta no relativa
+#window.iconbitmap(os.path.join(os.path.dirname(__file__),'Img\FAVICONCOLOR.ico')) #agregamos ico para window con ruta no relativa
 window.title("Calculadora Pulenta") #Titulo Pestaña window
 window.withdraw() #ocultar la ventana de la calculadora para que no se vea mientras está la ventana de inicio
 window.geometry("620x620") # resolucion de la ventana
 
 new_window=Toplevel() #creacion de la ventana de inicio
 new_window.geometry("520x420")
-new_window.iconbitmap(os.path.join(os.path.dirname(__file__),'Img\FAVICONCOLOR.ico')) #agregamos ico para new_window
+#new_window.iconbitmap(os.path.join(os.path.dirname(__file__),'Img\FAVICONCOLOR.ico')) #agregamos ico para new_window
 new_window.protocol("WM_DELETE_WINDOW", on_closing) #en caso de que cierren el programa en la ventana de incio el programa se cierra completo
 
-imagen = ImageTk.PhotoImage(Image.open(os.path.join(os.path.dirname(__file__), 'Img\logo.png')).resize((320, 210))) #insertamos el logo con ruta no relativa. 
+#imagen = ImageTk.PhotoImage(Image.open(os.path.join(os.path.dirname(__file__), 'Img\logo.png')).resize((320, 210))) #insertamos el logo con ruta no relativa. 
 new_window.title("Calculadora Pulenta")# Titulo Pestaña new_window
-lbl=Label(new_window,image=imagen) #Insertamos el logo a la new_window
-lbl.place(x=5,y=-30) #Posicion Logo
+#lbl=Label(new_window,image=imagen) #Insertamos el logo a la new_window
+#lbl.place(x=5,y=-30) #Posicion Logo
 btn=Button(new_window,text="Iniciar calculadora",command=iniciar)
 btn.place(x=200,y=200)
 bar=Progressbar(new_window,orient=HORIZONTAL,length=300)
