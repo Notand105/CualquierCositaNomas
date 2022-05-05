@@ -4,7 +4,7 @@ from cgitb import text
 from distutils.command.config import config
 from tkinter import colorchooser
 from tkinter import *
-from PIL import ImageTk, Image
+#from PIL import ImageTk, Image
 import tkinter
 from tkinter.ttk import *
 import time
@@ -70,9 +70,10 @@ def add_caracter(caracter):
 def Resultado():
     global Colores
     global coordenadas
+    cadenaResultado=entrada.cget("text")
     try:
         canvas.delete("all")
-        res=eval(entrada.cget("text"))
+        res=eval(cadenaResultado)
         drawnumbers(canvas,str(res),Colores,coordenadas)
     except Exception:
         pass
@@ -203,8 +204,8 @@ btnRes=tk.Button(window,text="=",width=6,height=8,bg="#B1D0E6",fg="black",comman
 canvas=Canvas(window,height=200,width=620,bg="#B1D0E6")
 btnDel=tk.Button(window,text="<--",width=7,height=1,bg="#B1D0E6",fg="black",command=partial(add_caracter,"<--"))
 btnPot=tk.Button(window,text="^",width=6,height=1,bg="#B1D0E6",fg="black",command=partial(add_caracter,"pass"))
-btnParI=tk.Button(window,text="(",width=6,height=1,bg="#B1D0E6",fg="black",command=partial(add_caracter,"pass"))
-btnParD=tk.Button(window,text=")",width=6,height=1,bg="#B1D0E6",fg="black",command=partial(add_caracter,"pass"))
+btnParI=tk.Button(window,text="(",width=6,height=1,bg="#B1D0E6",fg="black",command=partial(add_caracter,"("))
+btnParD=tk.Button(window,text=")",width=6,height=1,bg="#B1D0E6",fg="black",command=partial(add_caracter,")"))
 btnFact=tk.Button(window,text="!",width=6,height=1,bg="#B1D0E6",fg="black",command=partial(add_caracter,"pass"))
 btnSeno=tk.Button(window,text="sen()",width=6,height=1,bg="#B1D0E6",fg="black",command=partial(add_caracter,"pass"))
 btnCoseno=tk.Button(window,text="cos()",width=6,height=1,bg="#B1D0E6",fg="black",command=partial(add_caracter,"pass"))

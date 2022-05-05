@@ -345,7 +345,10 @@ def draw(canvas,caracter,desplazo,Colores,esDenominador,coordenadas):
             canvas.create_line(580-desplazo,100,585-desplazo,100,width=5,fill=checkif(Colores.colorpunt[1])) #linea izquiera arriba
         else:
             canvas.create_line(580-desplazo,180,585-desplazo,180,width=5,fill=checkif(Colores.colorpunt[1]))
-    
+    elif caracter=="(":
+        canvas.create_line(590-desplazo,20,570-desplazo,55,590-desplazo,130,smooth="true",width=3,fill=checkif(Colores.colorpunt[1]))
+    elif caracter==")":
+        canvas.create_line(600-desplazo,20,620-desplazo,55,600-desplazo,130,smooth="true",width=3,fill=checkif(Colores.colorpunt[1]))
     else:
         #canvas.create_text(180,50,text="No implementado aun")
         pass
