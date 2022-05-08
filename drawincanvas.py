@@ -7,18 +7,18 @@ def drawnumbers(canvas,entrada,Colores,coordenadas):
     j=0
     aux=""
     esDenominador=False
-    mover=len(entrada)*50
+    mover=len(entrada)*60
     if len(entrada)>1000:
         canvas.create_text(180,50,text="Demasiados caracteres :c")
     else:
         for i in entrada:
             if i =="/":
-                mover=mover+50
+                mover=mover+60
             if j>0:
-                mover=mover-50
+                mover=mover-60
             if aux =="/":
                 esDenominador=True
-                mover=mover+50
+                mover=mover+60
             draw(canvas,i,mover,Colores,esDenominador,coordenadas)
             esDenominador=False
             j=j+1

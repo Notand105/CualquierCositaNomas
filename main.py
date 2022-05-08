@@ -35,9 +35,12 @@ cadena=[]
 def is_operator(c):
     return c=="*" or c=="/" or  c=="-" or c=="+"
 
+def is_parentesis(c):
+    return c=="(" or c==")"
+
 def val_input(c):
     el = entrada.cget("text") # obtener la lista de caracteres de la calculadora
-
+    if(len(el) >= 1 and el[-1] == "("): return( c != ")" and not is_operator(c) ) or (c == "-")#validacion para no permitir el ingreso de parentesis de cierre y operadores despues de uno de apertura
     if not (is_operator(c)): return True # si la entrada no es un operador, pintalo
     if(len(el) == 1 and is_operator(el[-1])): return False # si hay exatamente un elemento en la calculadora y es un operador, no pinta
     if(len(el) > 1 and is_operator(el[-1]) and is_operator(el[-2])): return False # si hay dos o mas elementos en la calculadora y los dos ultimos son operadores, no pinta
@@ -58,22 +61,35 @@ def add_caracter(caracter):
     elif caracter=="AC":
         entrada.config(text="")
         cadena=""
+    #elif cadena[:-1] =="s" or cadena[:-1]=="c" or cadena[:-1]=="t":
+     #   if caracter!="(":
+     #       caracter="pass"
     elif caracter==")":
-        if comprobar():
+        if comprobar() and val_input(caracter):
+            entrada.config(text=entrada.cget("text")+caracter)
             cadena+=caracter
     elif caracter=="(":
+        entrada.config(text=entrada.cget("text")+caracter)
         cadena+=caracter
     elif caracter=="pass":
         pass
-
     else:
         if (val_input(caracter)): 
             entrada.config(text=entrada.cget("text")+caracter) #agregamos el boton presionado a la lista de caracteres ingresado
             cadena+=caracter
     #ya sea que eliminemos o agreguemos pasamos nuevamente la entrada a la funcion de dibujar numeros
     drawnumbers(canvas, cadena,Colores,coordenadas) 
-    entradaVentana.config(text=cadena)
-    #entrada.cget("text")
+    entradaVentana.config(text=EntradaEnInterfaz(cadena))
+
+def EntradaEnInterfaz(cadena):
+    if "s" in cadena:
+        cadena=[item.replace("s", "sin") for item in cadena] #remplaza las s por sin, para que se muestre bien en la salida de la interfaz
+    if "c" in cadena:
+        cadena=[item.replace("c", "cos") for item in cadena] #lo de arriba para coseno
+    if "t" in cadena:
+        cadena=[item.replace("t", "tan") for item in cadena] #lo de arriba para tangente
+    return cadena
+    
 def comprobar():
     cont=0
     con2=0
@@ -228,8 +244,8 @@ btnParI=tk.Button(window,text="(",width=6,height=1,bg="#B1D0E6",fg="black",comma
 btnParD=tk.Button(window,text=")",width=6,height=1,bg="#B1D0E6",fg="black",command=partial(add_caracter,")"))
 btnFact=tk.Button(window,text="!",width=6,height=1,bg="#B1D0E6",fg="black",command=partial(add_caracter,"!"))
 btnSeno=tk.Button(window,text="sen()",width=6,height=1,bg="#B1D0E6",fg="black",command=partial(add_caracter,"s"))
-btnCoseno=tk.Button(window,text="cos()",width=6,height=1,bg="#B1D0E6",fg="black",command=partial(add_caracter,"pass"))
-btnTan=tk.Button(window,text="Tan()",width=6,height=1,bg="#B1D0E6",fg="black",command=partial(add_caracter,"pass"))
+btnCoseno=tk.Button(window,text="cos()",width=6,height=1,bg="#B1D0E6",fg="black",command=partial(add_caracter,"c"))
+btnTan=tk.Button(window,text="Tan()",width=6,height=1,bg="#B1D0E6",fg="black",command=partial(add_caracter,"t"))
 btn13=tk.Button(window,text="+",width=6,height=1,bg="#B1D0E6",fg="black",command=partial(add_caracter,"+"))
 btn12=tk.Button(window,text="-",width=6,height=1,bg="#B1D0E6",fg="black",command=partial(add_caracter,"-"))
 btn11=tk.Button(window,text="*",width=6,height=1,bg="#B1D0E6",fg="black",command=partial(add_caracter,"*"))

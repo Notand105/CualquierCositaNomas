@@ -346,25 +346,41 @@ def draw(canvas,caracter,desplazo,Colores,esDenominador,coordenadas):
         else:
             canvas.create_line(580-desplazo,180,585-desplazo,180,width=5,fill=checkif(Colores.colorpunt[1]))
     elif caracter=="(":
-        canvas.create_line(590-desplazo,20,570-desplazo,55,590-desplazo,130,smooth="true",width=3,fill=checkif(Colores.colorpunt[1]))
+        canvas.create_line(590-desplazo,30,570-desplazo,70,590-desplazo,110,smooth="true",width=3,fill=checkif(Colores.colorpunt[1]))
     elif caracter==")":
-        canvas.create_line(600-desplazo,20,620-desplazo,55,600-desplazo,130,smooth="true",width=3,fill=checkif(Colores.colorpunt[1]))
+        canvas.create_line(590-desplazo,30,610-desplazo,70,590-desplazo,110,smooth="true",width=3,fill=checkif(Colores.colorpunt[1]))
     elif caracter=="!":
         canvas.create_line(600-desplazo,40,600-desplazo,85,width=3,fill=checkif(Colores.colorpunt[1]))
         canvas.create_line(597-desplazo,100,603-desplazo,100,width=5,fill=checkif(Colores.colorpunt[1]))
     elif caracter=="s":
-        
-        draw(canvas,"p",desplazo,Colores,esDenominador,coordenadas)
-        canvas.create_line(600-desplazo,40,600-desplazo,100,width=3,fill=checkif(Colores.colorpunt[1]))
-        canvas.create_line(600-desplazo,80,580-desplazo,40,width=3,fill=checkif(Colores.colorpunt[1]))
-        canvas.create_line(580-desplazo,40,580-desplazo,100,width=3,fill=checkif(Colores.colorpunt[1]))
-
-        canvas.create_line(570-desplazo,80,570-desplazo,40,width=3,fill=checkif(Colores.colorpunt[1]))
-        draw(canvas,"p",desplazo,Colores,esDenominador,coordenadas)
-        canvas.create_line(560-desplazo,40,540-desplazo,60,560-desplazo,60,540-desplazo,80,smooth="true",width=3,fill=checkif(Colores.colorpunt[1]))
-    elif caracter=="p":
-        canvas.create_line(600-desplazo,0,580-desplazo,0)
-        
+        #N
+        canvas.create_text(640-desplazo,0,text="")
+        canvas.create_line(630-desplazo,60,630-desplazo,100,width=3,fill=checkif(Colores.colorpunt[1]))
+        canvas.create_line(630-desplazo,100,610-desplazo,60,width=3,fill=checkif(Colores.colorpunt[1]))
+        canvas.create_line(610-desplazo,60,610-desplazo,100,width=3,fill=checkif(Colores.colorpunt[1]))
+        #i
+        canvas.create_line(600-desplazo,100,600-desplazo,60,width=3,fill=checkif(Colores.colorpunt[1]))
+        #s
+        canvas.create_line(590-desplazo,60,570-desplazo,75,590-desplazo,90,570-desplazo,100,smooth="true",width=3,fill=checkif(Colores.colorpunt[1]))
+    elif caracter=="c":
+        #s
+        canvas.create_line(635-desplazo,60,620-desplazo,75,640-desplazo,90,620-desplazo,100,smooth="true",width=3,fill=checkif(Colores.colorpunt[1]))
+        #o
+        canvas.create_line(610-desplazo,60,590-desplazo,80,610-desplazo,100,620-desplazo,80,610-desplazo,60,smooth="true",width=3,fill=checkif(Colores.colorpunt[1]))
+        #c
+        canvas.create_line(590-desplazo,61,570-desplazo,80,590-desplazo,99,smooth="true",width=3,fill=checkif(Colores.colorpunt[1]))
+    elif caracter=="t":
+        #N
+        canvas.create_line(630-desplazo,60,630-desplazo,100,width=3,fill=checkif(Colores.colorpunt[1]))
+        canvas.create_line(630-desplazo,100,610-desplazo,60,width=3,fill=checkif(Colores.colorpunt[1]))
+        canvas.create_line(610-desplazo,60,610-desplazo,100,width=3,fill=checkif(Colores.colorpunt[1]))
+        #a
+        canvas.create_line(600-desplazo,60,610-desplazo,100,width=3,fill=checkif(Colores.colorpunt[1]))
+        canvas.create_line(600-desplazo,60,590-desplazo,100,width=3,fill=checkif(Colores.colorpunt[1]))
+        canvas.create_line(610-desplazo,80,590-desplazo,80,width=3,fill=checkif(Colores.colorpunt[1]))
+        #t
+        canvas.create_line(570-desplazo,60,590-desplazo,60,width=3,fill=checkif(Colores.colorpunt[1]))
+        canvas.create_line(580-desplazo,60,580-desplazo,100,width=3,fill=checkif(Colores.colorpunt[1]))
     else:
 
         #canvas.create_text(180,50,text="No implementado aun")
