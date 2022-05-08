@@ -1,7 +1,7 @@
 from tkinter.ttk import *
 from tkinter import *
 from turtle import width
-from colores import colores
+from colores import colores #recomiendo modularizar es decir separar por carpetas las graficas de lo fuerte
 #130 por 400 30 a los 7
 def draw(canvas,caracter,desplazo,Colores,esDenominador,coordenadas):
     if caracter=="1":

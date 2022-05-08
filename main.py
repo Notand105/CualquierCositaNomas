@@ -55,18 +55,38 @@ def add_caracter(caracter):
     if caracter=="<--":         
         entrada.config(text=entrada.cget("text")[:-1])
         cadena=cadena[:-1]
+    elif caracter=="AC":
+        entrada.config(text="")
+        cadena=""
+    elif caracter==")":
+        if comprobar():
+            cadena+=caracter
+    elif caracter=="(":
+        cadena+=caracter
     elif caracter=="pass":
         pass
+
     else:
         if (val_input(caracter)): 
             entrada.config(text=entrada.cget("text")+caracter) #agregamos el boton presionado a la lista de caracteres ingresado
             cadena+=caracter
-    
     #ya sea que eliminemos o agreguemos pasamos nuevamente la entrada a la funcion de dibujar numeros
     drawnumbers(canvas, cadena,Colores,coordenadas) 
     entradaVentana.config(text=cadena)
     #entrada.cget("text")
-
+def comprobar():
+    cont=0
+    con2=0
+    global cadena
+    for i in cadena:
+        if i =="(":
+            cont+=1
+        elif i ==")":
+            con2+=1
+    if cont>con2:
+        return True
+    else:
+        return False
 def Resultado():
     global Colores
     global coordenadas
@@ -225,6 +245,7 @@ btn3=tk.Button(window,text="3",width=6,height=1,bg="#B1D0E6",fg="black",command=
 btn2=tk.Button(window,text="2",width=6,height=1,bg="#B1D0E6",fg="black",command=partial(add_caracter,"2"))
 btn1=tk.Button(window,text="1",width=6,height=1,bg="#B1D0E6",fg="black",command=partial(add_caracter,"1"))
 btn0=tk.Button(window,text="0",width=19,height=2,bg="#B1D0E6",fg="black",command=partial(add_caracter,"0"))
+btnAC=tk.Button(window,text="AC",width=6,height=1,bg="#B1D0E6",fg="black",command=partial(add_caracter,"AC"))
 opciones_menu= Menu(mymenu)
 mymenu.add_cascade(label="Opciones",menu=opciones_menu)
 opcionColores=opciones_menu.add_command(label="Cambiar colores", command=cambiar_color)
@@ -255,6 +276,7 @@ btnFact.place(x=460,y=260)
 btnSeno.place(x=380,y=310)
 btnCoseno.place(x=460,y=310)
 btnTan.place(x=380,y=360)
+btnAC.place(x=380,y=410)
 
 entradaVentana.place(x=20,y=500)
  #--------------------------- Fin elementos de la calculadora-----------------------#   
