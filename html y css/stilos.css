@@ -1,7 +1,18 @@
+body{
+    background-color: black;
+}
 h1{
     color:rebeccapurple;
 }
 p{
-    color:green;
+    color:rgb(255,0,0);
     font-family: monospace;
+}
+.color{
+    color:#4df
+}
+#primerlista{
+    font-size: 10;
+    font-family: fantasy;
+    color:fuchsia;
 }

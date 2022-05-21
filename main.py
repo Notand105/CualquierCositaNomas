@@ -6,6 +6,7 @@ from tkinter import colorchooser
 from tkinter import *
 #from PIL import ImageTk, Image
 import tkinter
+import re #permite uso de expresiones regulares
 from tkinter.ttk import *
 import time
 import tkinter.font as tkFont
@@ -53,6 +54,7 @@ def add_caracter(caracter):
     global Colores
     global cadena
     global coordenadas
+    global base
     canvas.delete("all")
         #si quereremos borrar solo eliminamos el ultimo termino de la lista
     if caracter=="<--":         
@@ -78,8 +80,11 @@ def add_caracter(caracter):
             entrada.config(text=entrada.cget("text")+caracter) #agregamos el boton presionado a la lista de caracteres ingresado
             cadena+=caracter
     #ya sea que eliminemos o agreguemos pasamos nuevamente la entrada a la funcion de dibujar numeros
-    drawnumbers(canvas, cadena,Colores,coordenadas) 
-    entradaVentana.config(text=EntradaEnInterfaz(cadena))
+    cadenaIntegra=cadena
+    if base=="Base 10":
+        cadena=a_binario(cadena)    
+    drawnumbers(canvas, cadena,Colores,coordenadas,SizeNumeros) 
+    entradaVentana.config(text=EntradaEnInterfaz(cadenaIntegra))
 
 def EntradaEnInterfaz(cadena):
     if "s" in cadena:
@@ -110,7 +115,7 @@ def Resultado():
     try:
         canvas.delete("all")
         res=eval(cadenaResultado)
-        drawnumbers(canvas,str(res),Colores,coordenadas)
+        drawnumbers(canvas,str(res),Colores,coordenadas,SizeNumeros)
     except Exception:
         pass
 
@@ -205,7 +210,43 @@ def mostrar_coordenadas():
     opciones_menu.entryconfig(3,label=coordenadas)
     add_caracter("pass")
 
+def cambio_base():
+    #global base
+    #if base == "Binario":
+    #    base = "Base 10"
+    #elif base == "Base 10":
+    #   base = "Binario"
+    #opciones_menu.entryconfig(4,label=base)
+    add_caracter("pass")
 
+def a_binario(cadena):
+    pass
+
+def cambioSize():
+    global nventanaSize
+    global Colores
+    ####################################################
+    #evita que se pueda abrir varias veces la ventana cambio de color
+    if nventanaSize:
+        return 
+    nventanaSize=True
+    ###################################################
+    changeSize=Toplevel() #ventana para elegir colores
+    changeSize.geometry("400x420")
+    Numero1=Button(changeSize,text="Muy Grande ",command=partial(getsize,-5)).pack()
+    Numero2=Button(changeSize,text="Grande ",command=partial(getsize,0)).pack()
+    Numero3=Button(changeSize,text="Medio ",command=partial(getsize,5)).pack()
+    Numero4=Button(changeSize,text="Medio bajo ",command=partial(getsize,10)).pack()
+    Numero5=Button(changeSize,text="Pequeño ",command=partial(getsize,15)).pack()
+    changeSize.wait_window()
+    nventanaSize = False
+def getsize(valor):
+    global SizeNumeros
+    SizeNumeros=valor
+    add_caracter("pass")
+
+SizeNumeros=0
+nventanaSize=False
 nventana=False
 Colores=colores()
 window=Tk() 
@@ -233,6 +274,8 @@ bar.place(x=100,y=300)
 entrada=Label(window,text="") #entrada tendra todos 
 Modo="Clasico" #guarda el modo del programa
 coordenadas="mostrar coordenadas" 
+base="Binario"
+size="Cambiar tamaño"
 entradaVentana=Label(window,text="Calculadora Pulenta",font=("consolas",16))#contendra la entrada que se mostrará en la pantalla como texto
 mymenu=Menu(window)
 window.config(menu=mymenu)
@@ -267,6 +310,8 @@ mymenu.add_cascade(label="Opciones",menu=opciones_menu)
 opcionColores=opciones_menu.add_command(label="Cambiar colores", command=cambiar_color)
 opcionModo=opciones_menu.add_command(label=Modo,command=cambioModo)
 opciones_menu.add_command(label=coordenadas,command=mostrar_coordenadas)
+opciones_menu.add_command(label=base,command=cambio_base)
+opciones_menu.add_command(label=size,command=cambioSize)
 canvas.pack()
 btnDel.place(x=280,y=410)
 btn13.place(x=280,y=210)
