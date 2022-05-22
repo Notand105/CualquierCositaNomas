@@ -26,7 +26,7 @@ def iniciar():
         time.sleep(0.02)
         window.update_idletasks()
     new_window.destroy()  
-    window.deiconify() # volvemos a mostrar la calculadora una vez se cierre la ventana de inicio
+    window.deiconify() # volvemos a mostrar la calculadora una vez se cierre la ventana de inicio.
 
 def on_closing():
     window.destroy()
@@ -40,7 +40,7 @@ def is_parentesis(c):
     return c=="(" or c==")"
 
 def val_input(c):
-    el = entrada.cget("text") # obtener la lista de caracteres de la calculadora
+    el = entrada.cget("text") # obtener la lista de caracteres de la calculadora.
     if(len(el) >= 1 and el[-1] == "("): return( c != ")" and not is_operator(c) ) or (c == "-")#validacion para no permitir el ingreso de parentesis de cierre y operadores despues de uno de apertura
     if not (is_operator(c)): return True # si la entrada no es un operador, pintalo
     if(len(el) == 1 and is_operator(el[-1])): return False # si hay exatamente un elemento en la calculadora y es un operador, no pinta
@@ -280,7 +280,21 @@ entradaVentana=Label(window,text="Calculadora Pulenta",font=("consolas",16))#con
 mymenu=Menu(window)
 window.config(menu=mymenu)
 btnRes=tk.Button(window,text="=",width=6,height=8,bg="#B1D0E6",fg="black",command=Resultado)
-canvas=Canvas(window,height=200,width=620,bg="#B1D0E6")
+
+
+frame=Frame(window,width=1000,height=100)
+frame.pack(expand=True, fill=BOTH) #.grid(row=0,column=0)
+canvas=Canvas(frame,height=200,width=650,bg="#B1D0E6",scrollregion=(0,0,1000,1000))
+hbar=Scrollbar(frame,orient=HORIZONTAL)
+hbar.pack(side=BOTTOM,fill=X)
+hbar.config(command=canvas.xview)
+vbar=Scrollbar(frame,orient=VERTICAL)
+vbar.pack(side=RIGHT,fill=Y)
+vbar.config(command=canvas.yview)
+canvas.config(width=650,height=200)
+canvas.config(xscrollcommand=hbar.set, yscrollcommand=vbar.set)
+canvas.pack(side=LEFT,expand=True,fill=BOTH)
+
 btnDel=tk.Button(window,text="<--",width=7,height=1,bg="#B1D0E6",fg="black",command=partial(add_caracter,"<--"))
 btnPot=tk.Button(window,text="^",width=6,height=1,bg="#B1D0E6",fg="black",command=partial(add_caracter,"pass"))
 btnParI=tk.Button(window,text="(",width=6,height=1,bg="#B1D0E6",fg="black",command=partial(add_caracter,"("))

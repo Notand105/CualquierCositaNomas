@@ -1,32 +1,20 @@
+
 from tkinter import *
-from functools import partial
-def add(caracter):
-    global cadena 
-    if caracter==")":
-        if comprobar():
-            cadena+=caracter
-    else:
-        cadena+=caracter
-    entrada.config(text=cadena)
+root=Tk()
+frame=Frame(root,width=300,height=300)
+frame.pack(expand=True, fill=BOTH) #.grid(row=0,column=0)
+canvas=Canvas(frame,bg='#FFFFFF',width=300,height=300,scrollregion=(0,0,500,500))
+hbar=Scrollbar(frame,orient=HORIZONTAL)
+hbar.pack(side=BOTTOM,fill=X)
+hbar.config(command=canvas.xview)
+vbar=Scrollbar(frame,orient=VERTICAL)
+vbar.pack(side=RIGHT,fill=Y)
+vbar.config(command=canvas.yview)
+canvas.config(width=300,height=300)
+canvas.config(xscrollcommand=hbar.set, yscrollcommand=vbar.set)
+canvas.pack(side=LEFT,expand=True,fill=BOTH)
 
-def comprobar():
-    cont=0
-    con2=0
-    global cadena
-    for i in cadena:
-        if i =="(":
-            cont+=1
-        elif i ==")":
-            con2+=1
-    if cont>con2:
-        return True
-    else: 
-        return False
+buttom=Label(root,text="Hola mundo")
+buttom.pack()
 
-window=Tk()
-btn1=Button(window,text="(",command=partial(add,"(")).pack()
-btn2=Button(window,text=")",command=partial(add,")")).pack()
-entrada=Label(window,text=" ")
-entrada.pack()
-cadena=entrada.cget("text")
-window.mainloop()
+root.mainloop()

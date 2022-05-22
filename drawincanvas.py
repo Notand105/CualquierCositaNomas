@@ -1,25 +1,63 @@
 from ast import If
+from itertools import count
 from tkinter import *
 from dibujos import draw
 from colores import colores
 
 def drawnumbers(canvas,entrada,Colores,coordenadas,porte):
     j=0
+    signos=["+","*","/","-"]
     aux=""
+    inparentesis=False
     esDenominador=False
-    mover=len(entrada)*(60-porte//4)
+    inparentesiselevado=False
+    division=0
+    elevado=0
+    mover=len(entrada)*(60-porte)
     if len(entrada)>1000:
         canvas.create_text(180,50,text="Demasiados caracteres :c")
     else:
         for i in entrada:
             if i =="/":
                 mover=mover+60
+                division=largodiv(j,entrada)
+            if aux=="(":
+                inparentesis=True
+            if aux==")":
+                inparentesis=False
+            if aux=="^":
+                elevado=50
+            elif i in signos and not(inparentesiselevado):
+                elevado=0
             if j>0:
                 mover=mover-60
             if aux =="/":
-                esDenominador=True
+                esDenominador+=80
                 mover=mover+60
-            draw(canvas,i,mover,Colores,esDenominador,coordenadas,porte)
-            esDenominador=False
+            elif i in signos and not(inparentesis):
+                esDenominador=0
+
+            draw(canvas,i,mover,Colores,esDenominador,coordenadas,porte,division,elevado)
             j=j+1
             aux=i #termino anterior 
+
+def largodiv(indice,entrada):
+    signos=["+","*","/","-"]
+    cont=0
+    aux=False
+    if entrada[indice]==")":
+        cont+=1
+        aux=True
+    indice-=1
+    while indice>=0:
+        if aux:
+            if entrada[indice]!="(":
+                cont+=1
+                
+        else:
+            if not(entrada in signos):
+                cont+=1
+                
+        indice-=1
+    print(cont)
+    return cont
