@@ -45,7 +45,8 @@ def largodiv(indice,entrada):
     signos=["+","*","/","-"]
     cont=0
     aux=False
-    if entrada[indice]==")":
+    print(entrada[indice])
+    if entrada[indice-1]==")":
         cont+=1
         aux=True
     indice-=1
@@ -60,5 +61,5 @@ def largodiv(indice,entrada):
                 break
                        
         indice-=1
-    #sprint(cont)
+    print(cont)
     return cont

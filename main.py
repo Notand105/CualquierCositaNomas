@@ -354,7 +354,7 @@ btnCoseno.place(x=460,y=310)
 btnTan.place(x=380,y=360)
 btnAC.place(x=380,y=410)
 
-entradaVentana.place(x=20,y=500)
+entradaVentana.place(x=100,y=420)
  #--------------------------- Fin elementos de la calculadora-----------------------#   
     
 
