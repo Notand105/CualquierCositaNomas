@@ -85,6 +85,7 @@ def add_caracter(caracter):
         cadena=a_binario(cadena)    
     drawnumbers(canvas, cadena,Colores,coordenadas,SizeNumeros) 
     entradaVentana.config(text=EntradaEnInterfaz(cadenaIntegra))
+    canvas.configure(scrollregion = canvas.bbox("all"))
 
 def EntradaEnInterfaz(cadena):
     if "s" in cadena:

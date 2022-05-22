@@ -90,7 +90,7 @@ def draw(canvas,caracter,desplazo,Colores,esDenominador,coordenadas,porte,divisi
             canvas.create_line(570-desplazo,70+esDenominador,600-desplazo,70+esDenominador,width=3,fill=checkif(Colores.colormas[1])) #linea del medio
 
     elif caracter=="/":
-        canvas.create_line(560-desplazo-(30*((division+1))),110-porte+esDenominador,610-desplazo,110-porte+esDenominador,width=3,fill=checkif(Colores.colordiv[1])) #linea diagonal derecha
+        canvas.create_line(560-desplazo-(40*((division))),110-porte+esDenominador,610-desplazo,110-porte+esDenominador,width=3,fill=checkif(Colores.colordiv[1])) #linea diagonal derecha
 
     elif caracter=="*":
         
@@ -148,6 +148,6 @@ def checkif(Cadena):
 
 def aliniear(division,esden):
     if esden>0:
-        return 60*division
+        return 40*division
     else:
         return 0

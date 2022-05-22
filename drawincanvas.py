@@ -52,12 +52,13 @@ def largodiv(indice,entrada):
     while indice>=0:
         if aux:
             if entrada[indice]!="(":
-                cont+=1
-                
+                cont+=1          
         else:
-            if not(entrada in signos):
+            if not(entrada[indice] in signos):
                 cont+=1
-                
+            if entrada[indice] in signos:
+                break
+                       
         indice-=1
-    print(cont)
+    #sprint(cont)
     return cont
