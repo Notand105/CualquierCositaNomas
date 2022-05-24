@@ -1,8 +1,10 @@
-from math import *
 
-for i in range(0,201):
-    if(math.log(i,2) >=i**math.tan(i)):
-        print("logaritmo mayor")
-    else:
-        print("tangentemayor")
+import math
 
+i=3
+
+while i>=0:
+    print(i)
+    print(math.tan(i))
+    print(i**math.tan(i))
+    i-=1;
