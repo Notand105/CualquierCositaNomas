@@ -44,59 +44,41 @@ public class Arbol {
                     aux=aux.getA();
                 }
                 aux.setA(nuevo);
-                size++;
+                size=size+4;
                 aux=inicio; 
 
                 while (aux.getC() != null){
                     aux=aux.getC();
                 }
                 aux.setC(nuevo);
-                size++;
+                size=size+4;
                 aux=inicio; 
 
                 while (aux.getG() != null){
                     aux=aux.getG();
                 }
                 aux.setG(nuevo);
-                size++;
+                size=size+4;
                 aux=inicio; 
 
                 while (aux.getT() != null){
                     aux=aux.getT();
                 }
                 aux.setT(nuevo);
-                size++;
+                size=size+4;
             }
             
             valor--;
         }
     }
 
+    
+
+
     public void imprimirArbol(nodoArbol arbol){
-        if(!esVacio()){
-            System.out.println(size);
-            /*
+        
             if (arbol != null) {
-                imprimirArbol(arbol.getA());
-                System.out.print(" " + arbol.getValor());
-                
-            }
-            if (arbol != null) {
-                imprimirArbol((arbol.getC()));
-                System.out.print(" " + arbol.getValor());
-                
-            }
-            if (arbol != null) {
-                imprimirArbol((arbol.getG()));
-                System.out.print(" " + arbol.getValor());
-                
-            }
-            if (arbol != null) {
-                imprimirArbol((arbol.getT()));
-                System.out.print(" " + arbol.getValor());
-                
-            }
-*/
+                System.out.println(size);
         }
     }
 

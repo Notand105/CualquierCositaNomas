@@ -5,6 +5,7 @@ public class nodoArbol {
     private nodoArbol C;
     private nodoArbol G;
     private nodoArbol T;
+    private Lista lista=new Lista();
 
     public nodoArbol(){
         this.valor=0;
@@ -12,6 +13,7 @@ public class nodoArbol {
         this.C=null;
         this.G=null;
         this.T=null;
+        lista=null;
     }
 
     public void setValor(int valor){
@@ -44,6 +46,9 @@ public class nodoArbol {
     }
     public nodoArbol getT(){
         return T;
+    }
+    public Lista getLista(){
+        return lista;
     }
 
 

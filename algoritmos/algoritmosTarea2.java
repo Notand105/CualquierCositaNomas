@@ -3,15 +3,11 @@ public class algoritmosTarea2{
     //Implemetar estructura de tipo arbol
     public static void Arbol(){
         Arbol tree=new Arbol();
-        tree.iniciar(3);
+        tree.iniciar(2);
         tree.imprimirArbol(tree.getInicio());
     }
-    // Implementar la lista en la que se guardará la informacion de las posiciones 
-    public static void Lista(){
-        //Lista lista=new Lista();
-    }
 
-
+    
     public static void main(String[] args) {
        Arbol();
     }
