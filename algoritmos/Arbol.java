@@ -21,10 +21,31 @@ public class Arbol {
     public nodoArbol getInicio(){
         return inicio;
     }
-    public void iniciar(int valor){
 
-        nodoArbol nuevo=new nodoArbol();
+    public void add(String valor){
+        inicio=addRecursivo(inicio, valor);
+    }
 
+    private nodoArbol addRecursivo(nodoArbol actual ,String valor){
+
+        //nodoArbol nuevo=new nodoArbol(valor);
+        if (actual == null) {
+            return new nodoArbol(valor);
+        }
+    
+        if (valor =="A") {
+            actual.setA(addRecursivo(actual.getA(), valor));
+        } else if (valor=="C") {
+            actual.setC(addRecursivo(actual.getC(), valor));
+        }else if (valor=="G") {
+            actual.setG(addRecursivo(actual.getG(), valor));
+        }else if (valor=="T") {
+            actual.setC(addRecursivo(actual.getC(), valor));
+        }else{
+            return actual;
+        }
+        return actual;
+            /*
         while (valor>0){
                 nuevo.setValor(valor);
                 nuevo.setA(null);
@@ -69,34 +90,19 @@ public class Arbol {
             }
             
             valor--;
-        }
+        }*/
     }
 
     public void imprimirArbol(nodoArbol arbol){
         if(!esVacio()){
-            System.out.println(size);
-            /*
             if (arbol != null) {
                 imprimirArbol(arbol.getA());
+                imprimirArbol(arbol.getC());
+                imprimirArbol(arbol.getG());
+                imprimirArbol(arbol.getT());
                 System.out.print(" " + arbol.getValor());
-                
             }
-            if (arbol != null) {
-                imprimirArbol((arbol.getC()));
-                System.out.print(" " + arbol.getValor());
-                
-            }
-            if (arbol != null) {
-                imprimirArbol((arbol.getG()));
-                System.out.print(" " + arbol.getValor());
-                
-            }
-            if (arbol != null) {
-                imprimirArbol((arbol.getT()));
-                System.out.print(" " + arbol.getValor());
-                
-            }
-*/
+
         }
     }
 

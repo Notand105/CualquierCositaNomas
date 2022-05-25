@@ -1,20 +1,20 @@
 public class nodoArbol {
  
-    private int valor=0;
+    private String valor;
     private nodoArbol A;
     private nodoArbol C;
     private nodoArbol G;
     private nodoArbol T;
 
-    public nodoArbol(){
-        this.valor=0;
+    public nodoArbol(String valor){
+        this.valor=valor;
         this.A=null;
         this.C=null;
         this.G=null;
         this.T=null;
     }
 
-    public void setValor(int valor){
+    public void setValor(String valor){
         this.valor=valor;
     }
     public void setA(nodoArbol A){
@@ -30,7 +30,7 @@ public class nodoArbol {
         this.T=T;
     }
 
-    public int getValor(){
+    public String getValor(){
         return valor;
     }
     public nodoArbol getA(){
