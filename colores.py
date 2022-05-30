@@ -15,6 +15,11 @@ class colores():
     colordiv="#000000"
     colormul="#000000"
     colorpunt="#000000"
+    colorpar="#000000"
+    colorfact="#000000"
+    colorSeno="#000000"
+    colorCos="#000000"
+    colorTan="#000000"
 
     def setColor1(self,color):
         self.color1=color

@@ -153,6 +153,17 @@ def getColor(caracter):
         Colores.colordiv=colorchooser.askcolor()
     elif(caracter=="."):
         Colores.colorpunt=colorchooser.askcolor()
+    elif(caracter=="(" or caracter==")"):
+        Colores.colorpar=colorchooser.askcolor()
+    elif(caracter=="t"):
+        Colores.colorTan=colorchooser.askcolor()
+    elif(caracter=="s"):
+        Colores.colorSeno=colorchooser.askcolor()  
+    elif(caracter=="c"):
+        Colores.colorCos=colorchooser.askcolor()  
+    elif(caracter=="!"):
+        Colores.colorfact=colorchooser.askcolor()
+    
     add_caracter("pass")
     
 def cambiar_color():
@@ -165,7 +176,7 @@ def cambiar_color():
     nventana=True
     ###################################################
     choiceColor=Toplevel() #ventana para elegir colores
-    choiceColor.geometry("400x420")
+    choiceColor.geometry("400x620")
     Numero1=Button(choiceColor,text="Color para el número 1: ",command=partial(getColor,"1")).pack()
     Numero2=Button(choiceColor,text="Color para el número 2: ",command=partial(getColor,"2")).pack()
     Numero3=Button(choiceColor,text="Color para el número 3: ",command=partial(getColor,"3")).pack()
@@ -181,6 +192,11 @@ def cambiar_color():
     signomul=Button(choiceColor,text="Color para el signo *: ",command=partial(getColor,"*")).pack()
     signodiv=Button(choiceColor,text="Color para el signo /: ",command=partial(getColor,"/")).pack()
     signopunt=Button(choiceColor,text="Color para el signo .: ",command=partial(getColor,".")).pack()
+    signoFact=Button(choiceColor,text="Color para el signo !: ",command=partial(getColor,"!")).pack()
+    signoPar=Button(choiceColor,text="Color para los paréntesis: ",command=partial(getColor,"(")).pack()
+    signoSen=Button(choiceColor,text="Color para el seno : ",command=partial(getColor,"s")).pack()
+    signoTan=Button(choiceColor,text="Color para la tangente: ",command=partial(getColor,"t")).pack()
+    signoCos=Button(choiceColor,text="Color para el coseno : ",command=partial(getColor,"c")).pack()
     choiceColor.wait_window()
     nventana = False
 
@@ -277,10 +293,10 @@ Modo="Clasico" #guarda el modo del programa
 coordenadas="mostrar coordenadas" 
 base="Binario"
 size="Cambiar tamaño"
-entradaVentana=Label(window,text="Calculadora Pulenta",font=("consolas",16))#contendra la entrada que se mostrará en la pantalla como texto
+
 mymenu=Menu(window)
 window.config(menu=mymenu)
-btnRes=tk.Button(window,text="=",width=6,height=8,bg="#B1D0E6",fg="black",command=Resultado)
+
 
 
 frame=Frame(window,width=1000,height=100)
@@ -296,6 +312,8 @@ canvas.config(width=650,height=200)
 canvas.config(xscrollcommand=hbar.set, yscrollcommand=vbar.set)
 canvas.pack(side=LEFT,expand=True,fill=BOTH)
 
+btnRes=tk.Button(window,text="=",width=6,height=8,bg="#B1D0E6",fg="black",command=Resultado)
+entradaVentana=Label(window,text="Calculadora Pulenta",font=("consolas",16))#contendra la entrada que se mostrará en la pantalla como texto
 btnDel=tk.Button(window,text="<--",width=7,height=1,bg="#B1D0E6",fg="black",command=partial(add_caracter,"<--"))
 btnPot=tk.Button(window,text="^",width=6,height=1,bg="#B1D0E6",fg="black",command=partial(add_caracter,"pass"))
 btnParI=tk.Button(window,text="(",width=6,height=1,bg="#B1D0E6",fg="black",command=partial(add_caracter,"("))
@@ -304,6 +322,7 @@ btnFact=tk.Button(window,text="!",width=6,height=1,bg="#B1D0E6",fg="black",comma
 btnSeno=tk.Button(window,text="sen()",width=6,height=1,bg="#B1D0E6",fg="black",command=partial(add_caracter,"s"))
 btnCoseno=tk.Button(window,text="cos()",width=6,height=1,bg="#B1D0E6",fg="black",command=partial(add_caracter,"c"))
 btnTan=tk.Button(window,text="Tan()",width=6,height=1,bg="#B1D0E6",fg="black",command=partial(add_caracter,"t"))
+btnGrado=tk.Button(window,text="°",width=6,height=1,bg="#B1D0E6",fg="black",command=partial(add_caracter,"°"))
 btn13=tk.Button(window,text="+",width=6,height=1,bg="#B1D0E6",fg="black",command=partial(add_caracter,"+"))
 btn12=tk.Button(window,text="-",width=6,height=1,bg="#B1D0E6",fg="black",command=partial(add_caracter,"-"))
 btn11=tk.Button(window,text="*",width=6,height=1,bg="#B1D0E6",fg="black",command=partial(add_caracter,"*"))
@@ -352,9 +371,10 @@ btnFact.place(x=460,y=260)
 btnSeno.place(x=380,y=310)
 btnCoseno.place(x=460,y=310)
 btnTan.place(x=380,y=360)
+btnGrado.place(x=460,y=360)
 btnAC.place(x=380,y=410)
 
-entradaVentana.place(x=100,y=420)
+entradaVentana.place(x=100,y=520)
  #--------------------------- Fin elementos de la calculadora-----------------------#   
     
 
