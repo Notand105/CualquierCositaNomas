@@ -1,6 +1,7 @@
 public class NodoCadenas {
-    private String cadena;
-    private Lista posiciones;
+    //nodos de las listas de cadenas
+    private String cadena; //guarda la cadena 
+    private Lista posiciones; //es una lista que guarda las posiciones de cada cadena
     private NodoCadenas siguiente;
 
     public NodoCadenas(){
@@ -8,9 +9,10 @@ public class NodoCadenas {
         this.siguiente=null;
         this.cadena="";
     }
+    //-----------------------------------setters-------------------------------------------------------
 
     public void setPosicion(int valor){
-        this.posiciones.agregar(valor);
+        this.posiciones.agregar(valor); //como tenemos una lista, para agregar hay que llamar a la funcion agregar de las listas
     }
     public void setSiguiente(NodoCadenas siguiente){
         this.siguiente=siguiente;
@@ -18,6 +20,8 @@ public class NodoCadenas {
     public void setCadena(String cadena){
         this.cadena=cadena;
     }
+
+    //-----------------------------------getters--------------------------------------------------------
 
     public Lista getLista(){
         return posiciones;

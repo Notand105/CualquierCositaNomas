@@ -6,11 +6,13 @@ public class findShortGen{
     
     public static void Ejecucion(int largo, Scanner datos){
         listaCadenas lista=new listaCadenas();
+        //hacemos que nuestro string cadena contenga la informacion del scanner
         String cadena=datos.next();
-        System.out.println(cadena);
         String cadenaAgregar;
         int posicion=0;
         //mientras la cadena sea lo suficientemente grande como para ser evaluada se continua la operación
+        System.out.println("El programa esta siendo ejecutado, por favor espera un momento...");
+        System.out.println();
         while (cadena.length()>=largo){
             cadenaAgregar=cadena.substring(0, largo);
             if(lista.buscar(cadenaAgregar)){
@@ -27,10 +29,13 @@ public class findShortGen{
 
     
     public static void main(String[] args) throws Exception {
+        //El primer argumento es el largo de las cadenas
        int LargoCadena=Integer.parseInt( args[0]);
+       //El segundo argumento es el archivo del cual se leera la información
        String archivo=args[1];
        File doc=new File(archivo);
        Scanner sc= new Scanner(doc);
+       //pasamos los datos a la función de ejecucion del programa
        Ejecucion(LargoCadena,sc);
     }
 

@@ -37,6 +37,8 @@ public class listaCadenas {
         }
         size++;
     }
+    //si la cadena ya está en la lista no hay que agregarla sino agregar la nueva posicion a su lista de posiciones
+
     public void actualizar(int posicion,String cadena){
         //a la posición de la lista con aux.getcadena()= cadena agregarle posicion a su lista de posiciones
         
@@ -49,6 +51,7 @@ public class listaCadenas {
         }
         
     }
+    //buscar si una cadena está presente en la lista
     public boolean buscar(String cadena){
         NodoCadenas aux=inicio;
         boolean encontrado=false;
@@ -63,7 +66,7 @@ public class listaCadenas {
         return encontrado;
 
     }
-
+    //encuentra las cadenas con menor numero de recurrencias 
     public int encontrarMenor(){
         NodoCadenas aux=inicio;
         int menor=0;
@@ -82,14 +85,14 @@ public class listaCadenas {
         return menor;
         
     }
-//imprimimos los elementos de la lista
+//imprimimos los elementos de la lista que tengan recurrencia igual al menor
     public void imprimirListaMenor(){
         if(!esVacia()){
             NodoCadenas aux=inicio;
 
             while(aux!=null){
                 if(aux.getLista().getSize()==encontrarMenor()){
-                    System.out.println("la cadena o cadenas con menos apariciones son "+aux.getCadena()+" en las posiciones: ");
+                    System.out.println("El gen mas corto encontrado es: "+aux.getCadena()+" posee un total de "+encontrarMenor()+" apariciones en las posiciones: ");
                     aux.getLista().imprimirLista();
                 }
                 

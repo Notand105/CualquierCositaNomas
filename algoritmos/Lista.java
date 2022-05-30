@@ -1,5 +1,5 @@
 public class Lista {
-    
+    //declaramos una lista de enteros
     private Node inicio;
     private int size;
     

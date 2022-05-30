@@ -1,4 +1,5 @@
 public class Node {
+    //nodos de la lista de enteros
     private int valor=0;
     private Node siguiente;
 
