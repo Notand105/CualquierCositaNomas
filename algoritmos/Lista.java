@@ -2,6 +2,7 @@ public class Lista {
     
     private Node inicio;
     private int size;
+    
 
     public Lista(){
         inicio=null;
@@ -18,11 +19,11 @@ public class Lista {
     }
 
 //agragación de elementos a la lista, como tenemos que mostrar las posiciones solo agregamos al final
-    public void agregar(int valor){
+    public void agregar(int valor, String cadena){
         Node nuevo=new Node();
 
         nuevo.setValor(valor);
-
+        nuevo.setCadena(cadena);
         if(esVacia()){
             inicio=nuevo;
         }

@@ -3,7 +3,11 @@ public class algoritmosTarea2{
     //Implemetar estructura de tipo arbol
     public static void Arbol(){
         Arbol tree=new Arbol();
-        tree.iniciar(2);
+        Lista lista=new Lista();
+        lista.agregar(0, "ACGT");
+        tree.add("ACGT");
+        
+        //tree.add("CATG"); 
         tree.imprimirArbol(tree.getInicio());
     }
 
