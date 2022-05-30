@@ -19,11 +19,10 @@ public class Lista {
     }
 
 //agragación de elementos a la lista, como tenemos que mostrar las posiciones solo agregamos al final
-    public void agregar(int valor, String cadena){
+    public void agregar(int valor){
         Node nuevo=new Node();
 
         nuevo.setValor(valor);
-        nuevo.setCadena(cadena);
         if(esVacia()){
             inicio=nuevo;
         }
@@ -43,13 +42,11 @@ public class Lista {
     public void imprimirLista(){
         if(!esVacia()){
             Node aux=inicio;
-            int i=0;
-
             while(aux!=null){
-                System.out.println(i+".[" + aux.getValor() +"]" +"-> ");
+                System.out.print("[" + aux.getValor() +"]" +"-> ");
                 aux=aux.getSiguiente();
-                i++;
             }
+            System.out.println();
 
         }
     }
