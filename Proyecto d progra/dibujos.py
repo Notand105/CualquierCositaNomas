@@ -136,7 +136,7 @@ def draw(canvas,caracter,desplazo,Colores,esDenominador,coordenadas,porte,divisi
         canvas.create_line(570-desplazo- aliniear(division,esDenominador),60+esDenominador,590-desplazo- aliniear(division,esDenominador),60+esDenominador,width=3,fill=checkif(Colores.colorTan[1]))
         canvas.create_line(580-desplazo- aliniear(division,esDenominador),60+esDenominador,580-desplazo- aliniear(division,esDenominador),100+esDenominador,width=3,fill=checkif(Colores.colorTan[1]))
     elif caracter=="°":
-        canvas.create_oval(580-desplazo, 40, 590-desplazo, 50, width=3)
+        canvas.create_oval(580-desplazo- aliniear(division,esDenominador), 40+esDenominador, 590-desplazo- aliniear(division,esDenominador), 50+esDenominador, width=2,outline=checkif(Colores.colorpunt[1]))
     else:
 
         #canvas.create_text(180,50,text="No implementado aun")

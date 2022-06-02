@@ -33,6 +33,9 @@ def on_closing():
 
 cadena=[]
 
+def is_number(c):
+    return c=="1" or c=="2" or c=="3" or c=="4" or c=="5" or c=="6" or c=="7" or c=="8" or c=="9" or "."
+
 def is_operator(c):
     return c=="*" or c=="/" or  c=="-" or c=="+"
 
@@ -42,6 +45,8 @@ def is_parentesis(c):
 def val_input(c):
     el = entrada.cget("text") # obtener la lista de caracteres de la calculadora.
     if(len(el) >= 1 and el[-1] == "("): return( c != ")" and not is_operator(c) ) or (c == "-")#validacion para no permitir el ingreso de parentesis de cierre y operadores despues de uno de apertura
+    if(len(el)>=1 and (el[-1] =="s" or el[-1] =="c" or el[-1] =="t") and c!="(" ):return False
+    if(len(el)>=1 and el[-1]=="!" and not (is_number(c)) ):return True
     if not (is_operator(c)): return True # si la entrada no es un operador, pintalo
     if(len(el) == 1 and is_operator(el[-1])): return False # si hay exatamente un elemento en la calculadora y es un operador, no pinta
     if(len(el) > 1 and is_operator(el[-1]) and is_operator(el[-2])): return False # si hay dos o mas elementos en la calculadora y los dos ultimos son operadores, no pinta
@@ -86,6 +91,7 @@ def add_caracter(caracter):
     drawnumbers(canvas, cadena,Colores,coordenadas,SizeNumeros) 
     entradaVentana.config(text=EntradaEnInterfaz(cadenaIntegra))
     canvas.configure(scrollregion = canvas.bbox("all"))
+    if(caracter=="t" or caracter=="s" or caracter=="c"):add_caracter("(")
 
 def EntradaEnInterfaz(cadena):
     if "s" in cadena:
