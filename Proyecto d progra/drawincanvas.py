@@ -64,5 +64,5 @@ def largodiv(indice,entrada):
                 break
                   
         indice-=1
-    print(cont)
+    #print(cont)
     return cont

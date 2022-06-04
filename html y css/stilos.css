@@ -1,18 +1,58 @@
+*{
+    box-sizing:border-box;
+    margin:0;
+}
 body{
-    background-color: black;
+    background-color: rgb(234, 241, 243);
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+}
+header{
+    padding: 5rem;
+    background:linear-gradient(rgb(234, 241, 243),rgb(185, 200, 229));
+}
+nav{
+    text-align: center;
+    padding:3rem;
+    background:linear-gradient(rgb(185, 200, 229),rgb(174, 245, 205));
+}
+nav a{
+    color:rgb(42, 48, 61);
+    padding:1rem;
+    margin-right: 10rem;
+    font-family:Verdana, Geneva, Tahoma, sans-serif;
+    font-size: 1.3rem;
 }
 h1{
-    color:rebeccapurple;
+    color:rgb(80, 164, 80);
+    font-size: 3rem;
+    
+    text-align: center;
 }
+section{
+    border: 3px solid rgb(42, 48, 61);
+    margin: 1.4rem;
+    margin-bottom:10rem;
+}
+section h2{
+    font-size: 2.5rem;
+    padding:3rem;
+    text-align: center;
+    color:rgb(80, 164, 80);
+}
+ul{
+    margin:2rem;
+    
+}
+li{
+    
+    width:49%;
+    padding: 100px auto 100px auto;
+    display: inline-block;
+}
+
 p{
-    color:rgb(255,0,0);
+    font-size: 1.3rem;
+    text-align: center;
+    color:rgb(42, 48, 61);
     font-family: monospace;
-}
-.color{
-    color:#4df
-}
-#primerlista{
-    font-size: 10;
-    font-family: fantasy;
-    color:fuchsia;
 }

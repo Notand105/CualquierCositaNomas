@@ -34,7 +34,7 @@ def on_closing():
 cadena=[]
 
 def is_number(c):
-    return c=="1" or c=="2" or c=="3" or c=="4" or c=="5" or c=="6" or c=="7" or c=="8" or c=="9" or "."
+    return c=="0" or c=="1" or c=="2" or c=="3" or c=="4" or c=="5" or c=="6" or c=="7" or c=="8" or c=="9" or "."
 
 def is_operator(c):
     return c=="*" or c=="/" or  c=="-" or c=="+"
@@ -63,14 +63,17 @@ def add_caracter(caracter):
     canvas.delete("all")
         #si quereremos borrar solo eliminamos el ultimo termino de la lista
     if caracter=="<--":         
+
+        base="Binario"
+        opciones_menu.entryconfig(4,label=base)
         entrada.config(text=entrada.cget("text")[:-1])
         cadena=cadena[:-1]
+
     elif caracter=="AC":
+        base="Binario"
+        opciones_menu.entryconfig(4,label=base)
         entrada.config(text="")
         cadena=""
-    #elif cadena[:-1] =="s" or cadena[:-1]=="c" or cadena[:-1]=="t":
-     #   if caracter!="(":
-     #       caracter="pass"
     elif caracter==")":
         if comprobar() and val_input(caracter):
             entrada.config(text=entrada.cget("text")+caracter)
@@ -85,9 +88,11 @@ def add_caracter(caracter):
             entrada.config(text=entrada.cget("text")+caracter) #agregamos el boton presionado a la lista de caracteres ingresado
             cadena+=caracter
     #ya sea que eliminemos o agreguemos pasamos nuevamente la entrada a la funcion de dibujar numeros
-    cadenaIntegra=cadena
+    cadenaIntegra=entrada.cget("text")
     if base=="Base 10":
         cadena=a_binario(cadena)    
+    if base=="Binario":
+        cadena=cadenaIntegra
     drawnumbers(canvas, cadena,Colores,coordenadas,SizeNumeros) 
     entradaVentana.config(text=EntradaEnInterfaz(cadenaIntegra))
     canvas.configure(scrollregion = canvas.bbox("all"))
@@ -234,16 +239,43 @@ def mostrar_coordenadas():
     add_caracter("pass")
 
 def cambio_base():
-    #global base
-    #if base == "Binario":
-    #    base = "Base 10"
-    #elif base == "Base 10":
-    #   base = "Binario"
-    #opciones_menu.entryconfig(4,label=base)
+    global base
+    if base == "Binario":
+        base = "Base 10"
+    elif base == "Base 10":
+       base = "Binario"
+    opciones_menu.entryconfig(4,label=base)
     add_caracter("pass")
 
 def a_binario(cadena):
-    pass
+    cadena=entrada.cget("text")
+    print(cadena)
+    cadena2=[]
+    cadena3=[]
+    #transformar la cadena en lista
+    for i in cadena:
+        cadena3+=i
+    cadena=cadena3
+    print(cadena)
+    #uniremos los numeros que esten juntos
+    contador=0
+    for j in range(0,10):
+        contador=0
+        for i in cadena:
+            if i.isnumeric() :
+                if contador>=1:
+                    if cadena[contador-1].isnumeric():
+                        cadena[contador-1:contador+1]= ["".join(cadena[contador-1:contador+1])]
+            contador+=1
+
+    #cadena2 contiene la cadena original pero transformada a binario
+    for i in cadena:
+        if(i.isnumeric()):
+            cadena2+=format(int(i),"b")
+        else:
+            cadena2+=i
+    return cadena2
+
 
 def cambioSize():
     global nventanaSize
