@@ -26,7 +26,7 @@ def drawnumbers(canvas,entrada,Colores,coordenadas,porte):
             if aux==")":
                 inparentesis=False
             if aux=="^":
-                elevado=50
+                elevado=10
             elif i in signos and not(inparentesiselevado):
                 elevado=0
             if j>0:

@@ -60,7 +60,7 @@ def add_caracter(caracter):
     global cadena
     global coordenadas
     global base
-    canvas.delete("all")
+    
         #si quereremos borrar solo eliminamos el ultimo termino de la lista
     if caracter=="<--":         
 
@@ -93,10 +93,12 @@ def add_caracter(caracter):
         cadena=a_binario(cadena)    
     if base=="Binario":
         cadena=cadenaIntegra
-    drawnumbers(canvas, cadena,Colores,coordenadas,SizeNumeros) 
-    entradaVentana.config(text=EntradaEnInterfaz(cadenaIntegra))
-    canvas.configure(scrollregion = canvas.bbox("all"))
-    if(caracter=="t" or caracter=="s" or caracter=="c"):add_caracter("(")
+    if(caracter!="^"):
+        canvas.delete("all")
+        drawnumbers(canvas, cadena,Colores,coordenadas,SizeNumeros) 
+        entradaVentana.config(text=EntradaEnInterfaz(cadenaIntegra))
+        canvas.configure(scrollregion = canvas.bbox("all"))
+        if(caracter=="t" or caracter=="s" or caracter=="c"):add_caracter("(")
 
 def EntradaEnInterfaz(cadena):
     if "s" in cadena:
@@ -353,7 +355,7 @@ canvas.pack(side=LEFT,expand=True,fill=BOTH)
 btnRes=tk.Button(window,text="=",width=6,height=8,bg="#B1D0E6",fg="black",command=Resultado)
 entradaVentana=Label(window,text="Calculadora Pulenta",font=("consolas",16))#contendra la entrada que se mostrará en la pantalla como texto
 btnDel=tk.Button(window,text="<--",width=7,height=1,bg="#B1D0E6",fg="black",command=partial(add_caracter,"<--"))
-btnPot=tk.Button(window,text="^",width=6,height=1,bg="#B1D0E6",fg="black",command=partial(add_caracter,"pass"))
+btnPot=tk.Button(window,text="^",width=6,height=1,bg="#B1D0E6",fg="black",command=partial(add_caracter,"^"))
 btnParI=tk.Button(window,text="(",width=6,height=1,bg="#B1D0E6",fg="black",command=partial(add_caracter,"("))
 btnParD=tk.Button(window,text=")",width=6,height=1,bg="#B1D0E6",fg="black",command=partial(add_caracter,")"))
 btnFact=tk.Button(window,text="!",width=6,height=1,bg="#B1D0E6",fg="black",command=partial(add_caracter,"!"))
