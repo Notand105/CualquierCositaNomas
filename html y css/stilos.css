@@ -22,6 +22,10 @@ nav a{
     font-family:Verdana, Geneva, Tahoma, sans-serif;
     font-size: 1.3rem;
 }
+a:hover{
+    color:linen;   
+    font-size:1.4rem;
+}
 h1{
     color:rgb(80, 164, 80);
     font-size: 3rem;
