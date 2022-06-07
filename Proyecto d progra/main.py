@@ -93,10 +93,11 @@ def add_caracter(caracter):
         cadena=a_binario(cadena)    
     if base=="Binario":
         cadena=cadenaIntegra
+    entradaVentana.config(text=EntradaEnInterfaz(cadenaIntegra))
     if(caracter!="^"):
         canvas.delete("all")
         drawnumbers(canvas, cadena,Colores,coordenadas,SizeNumeros) 
-        entradaVentana.config(text=EntradaEnInterfaz(cadenaIntegra))
+        
         canvas.configure(scrollregion = canvas.bbox("all"))
         if(caracter=="t" or caracter=="s" or caracter=="c"):add_caracter("(")
 

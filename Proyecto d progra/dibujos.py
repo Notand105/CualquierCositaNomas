@@ -88,7 +88,7 @@ def draw(canvas,caracter,desplazo,Colores,esDenominador,coordenadas,porte,divisi
             canvas.create_line(570-desplazo- aliniear(division,esDenominador),70+esDenominador-(elevado*3),600-desplazo- aliniear(division,esDenominador),70+esDenominador-(elevado*3),width=3,fill=checkif(Colores.colormas[1])) #linea del medio
 
     elif caracter=="/":
-        canvas.create_line(560-desplazo-(40*((division))),110-porte+esDenominador,610-desplazo,110-porte+esDenominador,width=3,fill=checkif(Colores.colordiv[1])) #linea diagonal derecha
+        canvas.create_line(570-desplazo-(60*((division-1))),110-porte+esDenominador,610-desplazo,110-porte+esDenominador,width=3,fill=checkif(Colores.colordiv[1])) #linea diagonal derecha
 
     elif caracter=="*":
         
@@ -101,7 +101,7 @@ def draw(canvas,caracter,desplazo,Colores,esDenominador,coordenadas,porte,divisi
     elif caracter=="(":
         canvas.create_line(590-desplazo- aliniear(division,esDenominador),30+esDenominador,570-desplazo- aliniear(division,esDenominador),70+esDenominador,590-desplazo- aliniear(division,esDenominador),110+esDenominador,smooth="true",width=3,fill=checkif(Colores.colorpar[1]))
     elif caracter==")":
-        canvas.create_line(590-desplazo- aliniear(division,esDenominador),30+esDenominador,610-desplazo- aliniear(division,esDenominador),70+esDenominador,590-desplazo- aliniear(division,esDenominador),110+esDenominador,smooth="true",width=3,fill=checkif(Colores.colorpar[1]))
+        canvas.create_line(600-desplazo- aliniear(division,esDenominador),30+esDenominador,620-desplazo- aliniear(division,esDenominador),70+esDenominador,600-desplazo- aliniear(division,esDenominador),110+esDenominador,smooth="true",width=3,fill=checkif(Colores.colorpar[1]))
     elif caracter=="!":
         canvas.create_line(600-desplazo- aliniear(division,esDenominador),40+porte+esDenominador,600-desplazo- aliniear(division,esDenominador),85+esDenominador,width=3,fill=checkif(Colores.colorfact[1]))
         canvas.create_line(597-desplazo- aliniear(division,esDenominador),100+esDenominador,600-desplazo- aliniear(division,esDenominador),100+esDenominador,width=5,fill=checkif(Colores.colorfact[1]))

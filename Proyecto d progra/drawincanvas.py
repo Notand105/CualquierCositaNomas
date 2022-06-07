@@ -6,7 +6,8 @@ from colores import colores
 
 def drawnumbers(canvas,entrada,Colores,coordenadas,porte):
     j=0
-    signos=["+","*","/","-"]
+    lastdiv=0
+    signos=["+","*","-"]
     aux=""
     inparentesis=False
     esDenominador=False
@@ -21,6 +22,8 @@ def drawnumbers(canvas,entrada,Colores,coordenadas,porte):
             if i =="/":
                 mover=mover+60
                 division=largodiv(j,entrada)
+                if(lastdiv!=0):
+                    esDenominador=lastdiv
             if aux=="(":
                 inparentesis=True
             if aux==")":
@@ -33,8 +36,9 @@ def drawnumbers(canvas,entrada,Colores,coordenadas,porte):
                 mover=mover-60
             if aux =="/":
                 esDenominador+=80
+                lastdiv=esDenominador
                 mover=mover+60
-            elif i in signos and not(inparentesis):
+            elif i in signos and not(inparentesis): 
                 esDenominador=0
 
             draw(canvas,i,mover,Colores,esDenominador,coordenadas,porte,division,elevado)
@@ -42,10 +46,10 @@ def drawnumbers(canvas,entrada,Colores,coordenadas,porte):
             aux=i #termino anterior 
 
 def largodiv(indice,entrada):
-    signos=["+","*","/","-"]
+    signos=["+","*","/","-","(",")"]
     cont=0
     aux=False
-    print(entrada[indice])
+    #print(entrada[indice])
     if entrada[indice-1]==")":
         cont+=1
         aux=True
@@ -55,7 +59,7 @@ def largodiv(indice,entrada):
             if entrada[indice]!="(":
                 cont+=1  
             else:
-                cont+=1
+                #cont+=1
                 break     
         else:
             if not(entrada[indice] in signos):
@@ -64,5 +68,5 @@ def largodiv(indice,entrada):
                 break
                   
         indice-=1
-    #print(cont)
+    print(cont)
     return cont
