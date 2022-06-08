@@ -7,6 +7,7 @@ from colores import colores
 def drawnumbers(canvas,entrada,Colores,coordenadas,porte):
     j=0
     lastdiv=0
+    alturadiv=90
     signos=["+","*","-"]
     aux=""
     inparentesis=False
@@ -23,15 +24,20 @@ def drawnumbers(canvas,entrada,Colores,coordenadas,porte):
         
         for i in entrada:
             if i =="/":
-                if lastdiv>0:
-                    mover=mover+60*(division-1)
-                else:
-                    mover=mover+60*(division)
+
+                
+                #if lastdiv>0:
+                #    mover=mover+60*(division-1)
+                #else:
+                mover=mover+60*(division)
                 division=largodiv(j,entrada)
                 if(lastdiv!=0):
                     esDenominador=lastdiv
+                    if(aux==")"):
+                        esDenominador+=2*tamaniopc(entrada,j-1)
                     #mover2=mover
                    # mover=mover+(60*4)
+                
             if aux=="(":
                 inparentesis=True
                 inparentesiselevado=True
@@ -42,14 +48,14 @@ def drawnumbers(canvas,entrada,Colores,coordenadas,porte):
                 elevado=10
                 esDenominador2=esDenominador
                 if esDenominador>0:
-                    esDenominador=esDenominador-80
+                    esDenominador=esDenominador-alturadiv
             elif i in signos and not(inparentesiselevado):
                 elevado=0
             if j>0:
                 #if i !="/":
                     mover=mover-60
             if aux =="/":
-                esDenominador+=80
+                esDenominador+=alturadiv
                 lastdiv=esDenominador
                 mover=mover+60
                 elevado=0
@@ -59,11 +65,10 @@ def drawnumbers(canvas,entrada,Colores,coordenadas,porte):
             if (i=="("):
                 parsize=tamaniopa(entrada,j);
             if (i==")"):
-                
                 parsize=tamaniopc(entrada,j);
                 esDenominador2=esDenominador
                 if esDenominador>0 and parsize>0:
-                    esDenominador=esDenominador-80
+                    esDenominador=esDenominador-alturadiv
             draw(canvas,i,mover,Colores,esDenominador,coordenadas,porte,division,elevado,parsize)
             j=j+1
             if aux=="^" or i==")":
@@ -74,18 +79,27 @@ def largodiv(indice,entrada):
     signos=["+","*","/","-","(",")"]
     cont=0
     aux=False
+    aux2=0
     #print(entrada[indice])
     if entrada[indice-1]==")":
         cont+=1
         aux=True
+        aux2+=1
     indice-=1
     while indice>=0:
         if aux:
+            if(entrada[indice]=="/"):
+                break
+            if entrada[indice]==")":
+                aux2+=1
             if entrada[indice]!="(":
                 cont+=1  
             else:
-                #cont+=1
-                break     
+                aux2-=1
+                if(aux2==0):
+                    break
+                else:
+                    cont+=1     
         else:
             if not(entrada[indice] in signos):
                 cont+=1
@@ -101,19 +115,42 @@ def largodiv(indice,entrada):
 #de apertura, una vez que el contador sea 0, corresponde al de cada uno
 def tamaniopa(cadena, indice):
     cont=indice
+    contador=0
+    aux1=0
+    print()
     while cont<len(cadena):
         if cadena[cont]=="/":
-            return 40
+            contador+= 40
+        if(cadena[cont]=="("):
+            #print("se suma 1 al aux. se encontr ( en la posicion ",cont)
+            aux1+=1
+        if(cadena[cont]==")"):
+            #print("se resta 1 al aux. se encontr ) en la posicion ",cont)
+            aux1-=1
+            if(aux1==0):
+            #    print("se retorna porque es 0 en la posicion ",cont)
+                return contador
         cont+=1
     return 0
 def tamaniopc(cadena, indice):
+   # print()
     cont=indice
+    contador=0
+    aux1=0
     while cont>=0:
         if cadena[cont]=="/":
-            return 40
+           # print("se encontró una division se suman 40")
+            contador+= 40
+        if(cadena[cont]==")"):
+            #print("se suma 1 al aux. se encontr ) en la posicion ",cont)
+            aux1+=1
+        if(cadena[cont]=="("):
+           # print("se resta 1 al aux. se encontr ) en la posicion ",cont)
+            aux1-=1
+            if(aux1==0):
+             #   print("se retorna porque es 0 en la posicion ",cont)
+                return contador
         cont-=1
-        if cadena[cont]=="(":
-            break;
     return 0
 
 #def bigpar(cadena):

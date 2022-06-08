@@ -54,28 +54,28 @@ def draw(canvas,caracter,desplazo,Colores,esDenominador,coordenadas,porte,divisi
 
     elif caracter=="8":
             #restar 20 a las de arriba, 40 alas de abajo, 30 al medio  -(elevado*4)
-            canvas.create_line(570-desplazo- aliniear(division,esDenominador),40+porte+esDenominador-(elevado*2),570-desplazo- aliniear(division,esDenominador),70-porte+esDenominador-(elevado*2),width=3,fill=checkif(Colores.color8[1])) #linea izquiera arriba
+            canvas.create_line(570-desplazo- aliniear(division,esDenominador),40+porte+esDenominador-(elevado*2),570-desplazo- aliniear(division,esDenominador),70+esDenominador-(elevado*2),width=3,fill=checkif(Colores.color8[1])) #linea izquiera arriba
             canvas.create_line(570-desplazo- aliniear(division,esDenominador),40+porte+esDenominador-(elevado*2),600-desplazo- aliniear(division,esDenominador),40+porte+esDenominador-(elevado*2),width=3,fill=checkif(Colores.color8[1])) #linea arriba
-            canvas.create_line(600-desplazo- aliniear(division,esDenominador),40+porte+esDenominador-(elevado*2),600-desplazo- aliniear(division,esDenominador),70-porte+esDenominador-(elevado*2),width=3,fill=checkif(Colores.color8[1])) #linea derecha arriba
+            canvas.create_line(600-desplazo- aliniear(division,esDenominador),40+porte+esDenominador-(elevado*2),600-desplazo- aliniear(division,esDenominador),70+esDenominador-(elevado*2),width=3,fill=checkif(Colores.color8[1])) #linea derecha arriba
             canvas.create_line(570-desplazo- aliniear(division,esDenominador),70+esDenominador-(elevado*3),600-desplazo- aliniear(division,esDenominador),70+esDenominador-(elevado*3),width=3,fill=checkif(Colores.color8[1])) #linea del medio
-            canvas.create_line(570-desplazo- aliniear(division,esDenominador),70-porte+esDenominador-(elevado*4),570-desplazo- aliniear(division,esDenominador),100-porte+esDenominador-(elevado*4),width=3,fill=checkif(Colores.color8[1])) #linea izquiera abajo
-            canvas.create_line(600-desplazo- aliniear(division,esDenominador),70-porte+esDenominador-(elevado*4),600-desplazo- aliniear(division,esDenominador),100-porte+esDenominador-(elevado*4),width=3,fill=checkif(Colores.color8[1])) #linea derecha abajo
+            canvas.create_line(570-desplazo- aliniear(division,esDenominador),70-porte+esDenominador-(elevado*3),570-desplazo- aliniear(division,esDenominador),100-porte+esDenominador-(elevado*4),width=3,fill=checkif(Colores.color8[1])) #linea izquiera abajo
+            canvas.create_line(600-desplazo- aliniear(division,esDenominador),70-porte+esDenominador-(elevado*3),600-desplazo- aliniear(division,esDenominador),100-porte+esDenominador-(elevado*4),width=3,fill=checkif(Colores.color8[1])) #linea derecha abajo
             canvas.create_line(570-desplazo- aliniear(division,esDenominador),100-porte+esDenominador-(elevado*4),600-desplazo- aliniear(division,esDenominador),100-porte+esDenominador-(elevado*4),width=3,fill=checkif(Colores.color8[1])) #linea abajo
 
     elif caracter=="9":
-            canvas.create_line(570-desplazo- aliniear(division,esDenominador),40+porte+esDenominador-(elevado*2),570-desplazo- aliniear(division,esDenominador),70-porte+esDenominador-(elevado*3),width=3,fill=checkif(Colores.color9[1])) #linea izquiera arriba
+            canvas.create_line(570-desplazo- aliniear(division,esDenominador),40+porte+esDenominador-(elevado*2),570-desplazo- aliniear(division,esDenominador),70+esDenominador-(elevado*3),width=3,fill=checkif(Colores.color9[1])) #linea izquiera arriba
             canvas.create_line(570-desplazo- aliniear(division,esDenominador),40+porte+esDenominador-(elevado*2),600-desplazo- aliniear(division,esDenominador),40+porte+esDenominador-(elevado*2),width=3,fill=checkif(Colores.color9[1])) #linea arriba
             canvas.create_line(600-desplazo- aliniear(division,esDenominador),40+porte+esDenominador-(elevado*2),600-desplazo- aliniear(division,esDenominador),70-porte+esDenominador-(elevado*2),width=3,fill=checkif(Colores.color9[1])) #linea derecha arriba
             canvas.create_line(570-desplazo- aliniear(division,esDenominador),70+esDenominador-(elevado*3),600-desplazo- aliniear(division,esDenominador),70+esDenominador-(elevado*3),width=3,fill=checkif(Colores.color9[1])) #linea del medio
-            canvas.create_line(600-desplazo- aliniear(division,esDenominador),70-porte+esDenominador-(elevado*4),600-desplazo- aliniear(division,esDenominador),100-porte+esDenominador-(elevado*4),width=3,fill=checkif(Colores.color9[1])) #linea derecha abajo
+            canvas.create_line(600-desplazo- aliniear(division,esDenominador),70-porte+esDenominador-(elevado*3),600-desplazo- aliniear(division,esDenominador),100-porte+esDenominador-(elevado*4),width=3,fill=checkif(Colores.color9[1])) #linea derecha abajo
             canvas.create_line(570-desplazo- aliniear(division,esDenominador),100-porte+esDenominador-(elevado*4),600-desplazo- aliniear(division,esDenominador),100-porte+esDenominador-(elevado*4),width=3,fill=checkif(Colores.color9[1])) #linea abajo
 
     elif caracter=="0":
             canvas.create_line(570-desplazo- aliniear(division,esDenominador),40+porte+esDenominador-(elevado*2),570-desplazo- aliniear(division,esDenominador),70-porte+esDenominador-(elevado*2),width=3,fill=checkif(Colores.color0[1])) #linea izquiera arriba
             canvas.create_line(570-desplazo- aliniear(division,esDenominador),40+porte+esDenominador-(elevado*2),600-desplazo- aliniear(division,esDenominador),40+porte+esDenominador-(elevado*2),width=3,fill=checkif(Colores.color0[1])) #linea arriba
             canvas.create_line(600-desplazo- aliniear(division,esDenominador),40+porte+esDenominador-(elevado*2),600-desplazo- aliniear(division,esDenominador),70-porte+esDenominador-(elevado*2),width=3,fill=checkif(Colores.color0[1])) #linea derecha arriba
-            canvas.create_line(570-desplazo- aliniear(division,esDenominador),70-porte+esDenominador-(elevado*4),570-desplazo- aliniear(division,esDenominador),100-porte+esDenominador-(elevado*4),width=3,fill=checkif(Colores.color0[1])) #linea izquiera abajo
-            canvas.create_line(600-desplazo- aliniear(division,esDenominador),70-porte+esDenominador-(elevado*4),600-desplazo- aliniear(division,esDenominador),100-porte+esDenominador-(elevado*4),width=3,fill=checkif(Colores.color0[1])) #linea derecha abajo
+            canvas.create_line(570-desplazo- aliniear(division,esDenominador),70-porte+esDenominador-(elevado*3),570-desplazo- aliniear(division,esDenominador),100-porte+esDenominador-(elevado*4),width=3,fill=checkif(Colores.color0[1])) #linea izquiera abajo
+            canvas.create_line(600-desplazo- aliniear(division,esDenominador),70-porte+esDenominador-(elevado*3),600-desplazo- aliniear(division,esDenominador),100-porte+esDenominador-(elevado*4),width=3,fill=checkif(Colores.color0[1])) #linea derecha abajo
             canvas.create_line(570-desplazo- aliniear(division,esDenominador),100-porte+esDenominador-(elevado*4),600-desplazo- aliniear(division,esDenominador),100-porte+esDenominador-(elevado*4),width=3,fill=checkif(Colores.color0[1])) #linea abajo
 
     elif caracter=="-":

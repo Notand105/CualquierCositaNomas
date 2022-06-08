@@ -37,7 +37,7 @@ def is_number(c):
     return c=="0" or c=="1" or c=="2" or c=="3" or c=="4" or c=="5" or c=="6" or c=="7" or c=="8" or c=="9" or "."
 
 def is_operator(c):
-    return c=="*" or c=="/" or  c=="-" or c=="+"
+    return c=="*" or c=="/" or  c=="-" or c=="+" or c=="^"
 
 def is_parentesis(c):
     return c=="(" or c==")"
@@ -291,11 +291,11 @@ def cambioSize():
     ###################################################
     changeSize=Toplevel() #ventana para elegir colores
     changeSize.geometry("400x420")
-    Numero1=Button(changeSize,text="Muy Grande ",command=partial(getsize,-5)).pack()
-    Numero2=Button(changeSize,text="Grande ",command=partial(getsize,0)).pack()
-    Numero3=Button(changeSize,text="Medio ",command=partial(getsize,5)).pack()
-    Numero4=Button(changeSize,text="Medio bajo ",command=partial(getsize,10)).pack()
-    Numero5=Button(changeSize,text="Pequeño ",command=partial(getsize,15)).pack()
+    Numero1=Button(changeSize,text="Muy Grande ",command=partial(getsize,-10)).pack()
+    Numero2=Button(changeSize,text="Grande ",command=partial(getsize,-5)).pack()
+    Numero3=Button(changeSize,text="Medio ",command=partial(getsize,0)).pack()
+    Numero4=Button(changeSize,text="Medio bajo ",command=partial(getsize,5)).pack()
+    Numero5=Button(changeSize,text="Pequeño ",command=partial(getsize,10)).pack()
     changeSize.wait_window()
     nventanaSize = False
 def getsize(valor):
@@ -334,7 +334,45 @@ def mostrar_botones():
         btnGrado.place_forget()
         btnAC.place_forget()
         entradaVentana.place_forget()
-
+        global nventanaBot
+        global Colores
+        ####################################################
+        #evita que se pueda abrir varias veces la ventana cambio de color
+        if nventanaBot:
+            return 
+        nventanaBot=True
+        ###################################################
+        NewBotones=Toplevel() #ventana para elegir colores
+        NewBotones.geometry("500x600")
+        new_btnDel=tk.Button(NewBotones,text="<--",width=8,height=1,bg="#B1D0E6",fg="black",command=partial(add_caracter,"<--")).grid(row=0, column=9)
+        new_btnRes=tk.Button(NewBotones,text="=",width=6,height=1,bg="#B1D0E6",fg="black",command=Resultado).grid(row=3, column=2)
+        new_entradaVentana=Label(NewBotones,text="Calculadora Pulenta",font=("consolas",16)).place(x=10,y=400)#contendra la entrada que se mostrará en la pantalla como texto
+        new_btnPot=tk.Button(NewBotones,text="^",width=6,height=1,bg="#B1D0E6",fg="black",command=partial(add_caracter,"^")).grid(row=1, column=6)
+        new_btnParI=tk.Button(NewBotones,text="(",width=6,height=1,bg="#B1D0E6",fg="black",command=partial(add_caracter,"(")).grid(row=0, column=5)
+        new_btnParD=tk.Button(NewBotones,text=")",width=6,height=1,bg="#B1D0E6",fg="black",command=partial(add_caracter,")")).grid(row=0, column=6)
+        new_btnFact=tk.Button(NewBotones,text="!",width=6,height=1,bg="#B1D0E6",fg="black",command=partial(add_caracter,"!")).grid(row=1, column=5)
+        new_btnSeno=tk.Button(NewBotones,text="sen()",width=6,height=1,bg="#B1D0E6",fg="black",command=partial(add_caracter,"s")).grid(row=3, column=4)
+        new_btnCoseno=tk.Button(NewBotones,text="cos()",width=6,height=1,bg="#B1D0E6",fg="black",command=partial(add_caracter,"c")).grid(row=2, column=4)
+        new_btnTan=tk.Button(NewBotones,text="Tan()",width=6,height=1,bg="#B1D0E6",fg="black",command=partial(add_caracter,"t")).grid(row=1, column=4)
+        new_btnGrado=tk.Button(NewBotones,text="°",width=6,height=1,bg="#B1D0E6",fg="black",command=partial(add_caracter,"°")).grid(row=0, column=4)
+        new_btn13=tk.Button(NewBotones,text="+",width=6,height=1,bg="#B1D0E6",fg="black",command=partial(add_caracter,"+")).grid(row=3, column=3)
+        new_btn12=tk.Button(NewBotones,text="-",width=6,height=1,bg="#B1D0E6",fg="black",command=partial(add_caracter,"-")).grid(row=2, column=3)
+        new_btn11=tk.Button(NewBotones,text="*",width=6,height=1,bg="#B1D0E6",fg="black",command=partial(add_caracter,"*")).grid(row=1, column=3)
+        new_btn10=tk.Button(NewBotones,text="/",width=6,height=1,bg="#B1D0E6",fg="black",command=partial(add_caracter,"/")).grid(row=0, column=3)
+        new_btn14=tk.Button(NewBotones,text=".",width=6,height=1,bg="#B1D0E6",fg="black",command=partial(add_caracter,".")).grid(row=3, column=1)
+        new_btn9=tk.Button(NewBotones,text="9",width=6,height=1,bg="#B1D0E6",fg="black",command=partial(add_caracter,"9")).grid(row=2, column=2)
+        new_btn8=tk.Button(NewBotones,text="8",width=6,height=1,bg="#B1D0E6",fg="black",command=partial(add_caracter,"8")).grid(row=2, column=1)
+        new_btn7=tk.Button(NewBotones,text="7",width=6,height=1,bg="#B1D0E6",fg="black",command=partial(add_caracter,"7")).grid(row=2, column=0)
+        new_btn6=tk.Button(NewBotones,text="6",width=6,height=1,bg="#B1D0E6",fg="black",command=partial(add_caracter,"6")).grid(row=1, column=2)
+        new_btn5=tk.Button(NewBotones,text="5",width=6,height=1,bg="#B1D0E6",fg="black",command=partial(add_caracter,"5")).grid(row=1, column=1)
+        new_btn4=tk.Button(NewBotones,text="4",width=6,height=1,bg="#B1D0E6",fg="black",command=partial(add_caracter,"4")).grid(row=1, column=0)
+        new_btn3=tk.Button(NewBotones,text="3",width=6,height=1,bg="#B1D0E6",fg="black",command=partial(add_caracter,"3")).grid(row=0, column=2)
+        new_btn0=tk.Button(NewBotones,text="0",width=6,height=1,bg="#B1D0E6",fg="black",command=partial(add_caracter,"0")).grid(row=3, column=0)
+        new_btn2=tk.Button(NewBotones,text="2",width=6,height=1,bg="#B1D0E6",fg="black",command=partial(add_caracter,"2")).grid(row=0, column=1)
+        new_btn1=tk.Button(NewBotones,text="1",width=6,height=1,bg="#B1D0E6",fg="black",command=partial(add_caracter,"1")).grid(row=0, column=0)
+        new_btnAC=tk.Button(NewBotones,text="AC",width=8,height=1,bg="#B1D0E6",fg="black",command=partial(add_caracter,"AC")).grid(row=1, column=9)
+        NewBotones.wait_window()
+        nventanaBot = False
     elif botones == "Mostrar Botones":
         btnDel.place(x=280,y=410)
         btn13.place(x=280,y=210)
@@ -370,6 +408,7 @@ def mostrar_botones():
 SizeNumeros=0
 nventanaSize=False
 nventana=False
+nventanaBot=False
 Colores=colores()
 window=Tk() 
 #window.iconbitmap(os.path.join(os.path.dirname(__file__),'Img\FAVICONCOLOR.ico')) #agregamos ico para window con ruta no relativa
