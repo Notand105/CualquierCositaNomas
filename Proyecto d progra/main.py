@@ -303,6 +303,70 @@ def getsize(valor):
     SizeNumeros=valor
     add_caracter("pass")
 
+def mostrar_botones():
+    global botones
+    if botones == "Ocultar Botones":
+        botones = "Mostrar Botones"
+        btnDel.place_forget()
+        btn13.place_forget()
+        btn12.place_forget()
+        btn11.place_forget()
+        btn10.place_forget()
+        btn14.place_forget()
+        btn7.place_forget()
+        btn8.place_forget()
+        btn9.place_forget()
+        btn4.place_forget()
+        btn5.place_forget()
+        btn6.place_forget()
+        btn0.place_forget()
+        btn1.place_forget()
+        btn2.place_forget()
+        btn3.place_forget()
+        btnRes.place_forget()
+        btnParI.place_forget()
+        btnParD.place_forget()
+        btnPot.place_forget()
+        btnFact.place_forget()
+        btnSeno.place_forget()
+        btnCoseno.place_forget()
+        btnTan.place_forget()
+        btnGrado.place_forget()
+        btnAC.place_forget()
+        entradaVentana.place_forget()
+
+    elif botones == "Mostrar Botones":
+        btnDel.place(x=280,y=410)
+        btn13.place(x=280,y=210)
+        btn12.place(x=190,y=210)
+        btn11.place(x=100,y=210)
+        btn10.place(x=10,y=210)
+        btn14.place(x=190,y=410)
+        btn7.place(x=10,y=260)
+        btn8.place(x=100,y=260)
+        btn9.place(x=190,y=260)
+        btn4.place(x=10,y=310)
+        btn5.place(x=100,y=310)
+        btn6.place(x=190,y=310)
+        btn0.place(x=10,y=410)
+        btn1.place(x=10,y=360)
+        btn2.place(x=100,y=360)
+        btn3.place(x=190,y=360)
+        btnRes.place(x=280,y=260)
+        btnParI.place(x=380,y=210)
+        btnParD.place(x=460,y=210)
+        btnPot.place(x=380,y=260)
+        btnFact.place(x=460,y=260)
+        btnSeno.place(x=380,y=310)
+        btnCoseno.place(x=460,y=310)
+        btnTan.place(x=380,y=360)
+        btnGrado.place(x=460,y=360)
+        btnAC.place(x=380,y=410)
+        entradaVentana.place(x=100,y=520)
+        botones = "Ocultar Botones"
+    opciones_menu.entryconfig(6,label=botones)
+    add_caracter("pass")
+
 SizeNumeros=0
 nventanaSize=False
 nventana=False
@@ -334,7 +398,7 @@ Modo="Clasico" #guarda el modo del programa
 coordenadas="mostrar coordenadas" 
 base="Binario"
 size="Cambiar tamaño"
-
+botones="Ocultar Botones"
 mymenu=Menu(window)
 window.config(menu=mymenu)
 
@@ -387,6 +451,7 @@ opcionModo=opciones_menu.add_command(label=Modo,command=cambioModo)
 opciones_menu.add_command(label=coordenadas,command=mostrar_coordenadas)
 opciones_menu.add_command(label=base,command=cambio_base)
 opciones_menu.add_command(label=size,command=cambioSize)
+opciones_menu.add_command(label=botones,command=mostrar_botones)
 canvas.pack()
 btnDel.place(x=280,y=410)
 btn13.place(x=280,y=210)
