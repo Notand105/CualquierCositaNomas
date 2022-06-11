@@ -94,49 +94,49 @@ def draw(canvas,caracter,desplazo,Colores,esDenominador,coordenadas,porte,divisi
 
     elif caracter=="*":
         
-            canvas.create_line(570-desplazo- aliniear(division,esDenominador),50+porte//2+esDenominador,600-desplazo- aliniear(division,esDenominador),80+porte//2+esDenominador,width=3,fill=checkif(Colores.colormul[1]))
-            canvas.create_line(600-desplazo- aliniear(division,esDenominador),50+porte//2+esDenominador,570-desplazo- aliniear(division,esDenominador),80+porte//2+esDenominador,width=3,fill=checkif(Colores.colormul[1]))
+            canvas.create_line(570-desplazo- aliniear(division,esDenominador),50+porte//2+esDenominador-(elevado*3),600-desplazo- aliniear(division,esDenominador),80+porte//2+esDenominador-(elevado*3),width=3,fill=checkif(Colores.colormul[1]))
+            canvas.create_line(600-desplazo- aliniear(division,esDenominador),50+porte//2+esDenominador-(elevado*3),570-desplazo- aliniear(division,esDenominador),80+porte//2+esDenominador-(elevado*3),width=3,fill=checkif(Colores.colormul[1]))
 
     elif caracter==".":
             canvas.create_line(580-desplazo- aliniear(division,esDenominador),100-porte+esDenominador,585-desplazo- aliniear(division,esDenominador),100-porte+esDenominador,width=5,fill=checkif(Colores.colorpunt[1])) #linea izquiera arriba
 
     elif caracter=="(":
-        canvas.create_line(590-desplazo- aliniear(division,esDenominador),30+esDenominador,570-desplazo- aliniear(division,esDenominador),70+esDenominador+parsize,590-desplazo- aliniear(division,esDenominador),110+esDenominador+(parsize*2),smooth="true",width=3,fill=checkif(Colores.colorpar[1]))
+        canvas.create_line(590-desplazo- aliniear(division,esDenominador),30+esDenominador-(elevado*3),570-desplazo- aliniear(division,esDenominador),70+esDenominador+parsize-(elevado*3),590-desplazo- aliniear(division,esDenominador),110+esDenominador+(parsize*2)-(elevado*3),smooth="true",width=3,fill=checkif(Colores.colorpar[1]))
     elif caracter==")":
-        canvas.create_line(600-desplazo- aliniear(division,esDenominador),30+esDenominador,620-desplazo- aliniear(division,esDenominador),70+esDenominador+parsize,600-desplazo- aliniear(division,esDenominador),110+esDenominador+(parsize*2),smooth="true",width=3,fill=checkif(Colores.colorpar[1]))
+        canvas.create_line(600-desplazo- aliniear(division,esDenominador),30+esDenominador-(elevado*3),620-desplazo- aliniear(division,esDenominador),70+esDenominador+parsize-(elevado*3),600-desplazo- aliniear(division,esDenominador),110+esDenominador+(parsize*2)-(elevado*3),smooth="true",width=3,fill=checkif(Colores.colorpar[1]))
     elif caracter=="!":
-        canvas.create_line(600-desplazo- aliniear(division,esDenominador),40+porte+esDenominador,600-desplazo- aliniear(division,esDenominador),85+esDenominador,width=3,fill=checkif(Colores.colorfact[1]))
-        canvas.create_line(597-desplazo- aliniear(division,esDenominador),100+esDenominador,600-desplazo- aliniear(division,esDenominador),100+esDenominador,width=5,fill=checkif(Colores.colorfact[1]))
+        canvas.create_line(600-desplazo- aliniear(division,esDenominador),40+porte+esDenominador-(elevado*3),600-desplazo- aliniear(division,esDenominador),85+esDenominador-(elevado*3),width=3,fill=checkif(Colores.colorfact[1]))
+        canvas.create_line(597-desplazo- aliniear(division,esDenominador),100+esDenominador-(elevado*3),600-desplazo- aliniear(division,esDenominador),100+esDenominador-(elevado*3),width=5,fill=checkif(Colores.colorfact[1]))
     elif caracter=="s":
         #N
-        canvas.create_line(630-desplazo- aliniear(division,esDenominador),60+esDenominador,630-desplazo- aliniear(division,esDenominador),100+esDenominador,width=3,fill=checkif(Colores.colorSeno[1]))
-        canvas.create_line(630-desplazo- aliniear(division,esDenominador),100+esDenominador,610-desplazo- aliniear(division,esDenominador),60+esDenominador,width=3,fill=checkif(Colores.colorSeno[1]))
-        canvas.create_line(610-desplazo- aliniear(division,esDenominador),60+esDenominador,610-desplazo- aliniear(division,esDenominador),100+esDenominador,width=3,fill=checkif(Colores.colorSeno[1]))
+        canvas.create_line(630-desplazo- aliniear(division,esDenominador),60+esDenominador-(elevado*3),630-desplazo- aliniear(division,esDenominador),100+esDenominador-(elevado*3),width=3,fill=checkif(Colores.colorSeno[1]))
+        canvas.create_line(630-desplazo- aliniear(division,esDenominador),100+esDenominador-(elevado*3),610-desplazo- aliniear(division,esDenominador),60+esDenominador-(elevado*3),width=3,fill=checkif(Colores.colorSeno[1]))
+        canvas.create_line(610-desplazo- aliniear(division,esDenominador),60+esDenominador-(elevado*3),610-desplazo- aliniear(division,esDenominador),100+esDenominador-(elevado*3),width=3,fill=checkif(Colores.colorSeno[1]))
         #i
-        canvas.create_line(600-desplazo- aliniear(division,esDenominador),100+esDenominador,600-desplazo- aliniear(division,esDenominador),60+esDenominador,width=3,fill=checkif(Colores.colorSeno[1]))
+        canvas.create_line(600-desplazo- aliniear(division,esDenominador),100+esDenominador-(elevado*3),600-desplazo- aliniear(division,esDenominador),60+esDenominador-(elevado*3),width=3,fill=checkif(Colores.colorSeno[1]))
         #s
-        canvas.create_line(590-desplazo- aliniear(division,esDenominador),60+esDenominador,570-desplazo- aliniear(division,esDenominador),75+esDenominador,590-desplazo- aliniear(division,esDenominador),90+esDenominador,570-desplazo- aliniear(division,esDenominador),100+esDenominador,smooth="true",width=3,fill=checkif(Colores.colorSeno[1]))
+        canvas.create_line(590-desplazo- aliniear(division,esDenominador),60+esDenominador-(elevado*3),570-desplazo- aliniear(division,esDenominador),75+esDenominador-(elevado*3),590-desplazo- aliniear(division,esDenominador),90+esDenominador-(elevado*3),570-desplazo- aliniear(division,esDenominador),100+esDenominador-(elevado*3),smooth="true",width=3,fill=checkif(Colores.colorSeno[1]))
     elif caracter=="c":
         #s
-        canvas.create_line(635-desplazo- aliniear(division,esDenominador),60+esDenominador,620-desplazo- aliniear(division,esDenominador),75+esDenominador,640-desplazo- aliniear(division,esDenominador),90+esDenominador,620-desplazo- aliniear(division,esDenominador),100+esDenominador,smooth="true",width=3,fill=checkif(Colores.colorCos[1]))
+        canvas.create_line(635-desplazo- aliniear(division,esDenominador),60+esDenominador-(elevado*3),620-desplazo- aliniear(division,esDenominador),75+esDenominador-(elevado*3),640-desplazo- aliniear(division,esDenominador),90+esDenominador-(elevado*3),620-desplazo- aliniear(division,esDenominador),100+esDenominador-(elevado*3),smooth="true",width=3,fill=checkif(Colores.colorCos[1]))
         #o
-        canvas.create_line(610-desplazo- aliniear(division,esDenominador),60+esDenominador,590-desplazo- aliniear(division,esDenominador),80+esDenominador,610-desplazo- aliniear(division,esDenominador),100+esDenominador,620-desplazo- aliniear(division,esDenominador),80+esDenominador,610-desplazo- aliniear(division,esDenominador),60+esDenominador,smooth="true",width=3,fill=checkif(Colores.colorCos[1]))
+        canvas.create_line(610-desplazo- aliniear(division,esDenominador),60+esDenominador-(elevado*3),590-desplazo- aliniear(division,esDenominador),80+esDenominador-(elevado*3),610-desplazo- aliniear(division,esDenominador),100+esDenominador-(elevado*3),620-desplazo- aliniear(division,esDenominador),80+esDenominador-(elevado*3),610-desplazo- aliniear(division,esDenominador),60+esDenominador-(elevado*3),smooth="true",width=3,fill=checkif(Colores.colorCos[1]))
         #c
-        canvas.create_line(590-desplazo- aliniear(division,esDenominador),61+esDenominador,570-desplazo- aliniear(division,esDenominador),80+esDenominador,590-desplazo- aliniear(division,esDenominador),99+esDenominador,smooth="true",width=3,fill=checkif(Colores.colorCos[1]))
+        canvas.create_line(590-desplazo- aliniear(division,esDenominador),61+esDenominador-(elevado*3),570-desplazo- aliniear(division,esDenominador),80+esDenominador-(elevado*3),590-desplazo- aliniear(division,esDenominador),99+esDenominador-(elevado*3),smooth="true",width=3,fill=checkif(Colores.colorCos[1]))
     elif caracter=="t":
         #N
-        canvas.create_line(630-desplazo- aliniear(division,esDenominador),60+esDenominador,630-desplazo- aliniear(division,esDenominador),100+esDenominador,width=3,fill=checkif(Colores.colorTan[1]))
-        canvas.create_line(630-desplazo- aliniear(division,esDenominador),100+esDenominador,610-desplazo- aliniear(division,esDenominador),60+esDenominador,width=3,fill=checkif(Colores.colorTan[1]))
-        canvas.create_line(610-desplazo- aliniear(division,esDenominador),60+esDenominador,610-desplazo- aliniear(division,esDenominador),100+esDenominador,width=3,fill=checkif(Colores.colorTan[1]))
+        canvas.create_line(630-desplazo- aliniear(division,esDenominador),60+esDenominador-(elevado*3),630-desplazo- aliniear(division,esDenominador),100+esDenominador-(elevado*3),width=3,fill=checkif(Colores.colorTan[1]))
+        canvas.create_line(630-desplazo- aliniear(division,esDenominador),100+esDenominador-(elevado*3),610-desplazo- aliniear(division,esDenominador),60+esDenominador-(elevado*3),width=3,fill=checkif(Colores.colorTan[1]))
+        canvas.create_line(610-desplazo- aliniear(division,esDenominador),60+esDenominador-(elevado*3),610-desplazo- aliniear(division,esDenominador),100+esDenominador-(elevado*3),width=3,fill=checkif(Colores.colorTan[1]))
         #a
-        canvas.create_line(600-desplazo- aliniear(division,esDenominador),60+esDenominador,610-desplazo- aliniear(division,esDenominador),100+esDenominador,width=3,fill=checkif(Colores.colorTan[1]))
-        canvas.create_line(600-desplazo- aliniear(division,esDenominador),60+esDenominador,590-desplazo- aliniear(division,esDenominador),100+esDenominador,width=3,fill=checkif(Colores.colorTan[1]))
-        canvas.create_line(610-desplazo- aliniear(division,esDenominador),80+esDenominador,590-desplazo- aliniear(division,esDenominador),80+esDenominador,width=3,fill=checkif(Colores.colorTan[1]))
+        canvas.create_line(600-desplazo- aliniear(division,esDenominador),60+esDenominador-(elevado*3),610-desplazo- aliniear(division,esDenominador),100+esDenominador-(elevado*3),width=3,fill=checkif(Colores.colorTan[1]))
+        canvas.create_line(600-desplazo- aliniear(division,esDenominador),60+esDenominador-(elevado*3),590-desplazo- aliniear(division,esDenominador),100+esDenominador-(elevado*3),width=3,fill=checkif(Colores.colorTan[1]))
+        canvas.create_line(610-desplazo- aliniear(division,esDenominador),80+esDenominador-(elevado*3),590-desplazo- aliniear(division,esDenominador),80+esDenominador-(elevado*3),width=3,fill=checkif(Colores.colorTan[1]))
         #t
-        canvas.create_line(570-desplazo- aliniear(division,esDenominador),60+esDenominador,590-desplazo- aliniear(division,esDenominador),60+esDenominador,width=3,fill=checkif(Colores.colorTan[1]))
-        canvas.create_line(580-desplazo- aliniear(division,esDenominador),60+esDenominador,580-desplazo- aliniear(division,esDenominador),100+esDenominador,width=3,fill=checkif(Colores.colorTan[1]))
+        canvas.create_line(570-desplazo- aliniear(division,esDenominador),60+esDenominador-(elevado*3),590-desplazo- aliniear(division,esDenominador),60+esDenominador-(elevado*3),width=3,fill=checkif(Colores.colorTan[1]))
+        canvas.create_line(580-desplazo- aliniear(division,esDenominador),60+esDenominador-(elevado*3),580-desplazo- aliniear(division,esDenominador),100+esDenominador-(elevado*3),width=3,fill=checkif(Colores.colorTan[1]))
     elif caracter=="°":
-        canvas.create_oval(580-desplazo- aliniear(division,esDenominador), 40+esDenominador, 590-desplazo- aliniear(division,esDenominador), 50+esDenominador, width=2,outline=checkif(Colores.colorpunt[1]))
+        canvas.create_oval(580-desplazo- aliniear(division,esDenominador), 40+esDenominador-(elevado*3), 590-desplazo- aliniear(division,esDenominador), 50+esDenominador-(elevado*3), width=2,outline=checkif(Colores.colorpunt[1]))
     else:
 
         #canvas.create_text(180,50,text="No implementado aun")
@@ -153,3 +153,4 @@ def aliniear(division,esden):
         return 40*division
     else:
         return 0
+
