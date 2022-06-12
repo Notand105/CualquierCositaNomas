@@ -45,11 +45,12 @@ def drawnumbers(canvas,entrada,Colores,coordenadas,porte):
                 inparentesis=False
                 inparentesiselevado=False
             if aux=="^":
-                elevado=10
+                elevado=15
                 esDenominador2=esDenominador
                 if esDenominador>0:
                     esDenominador=esDenominador-alturadiv
             elif i in signos and not(inparentesiselevado):
+                print("e0")
                 elevado=0
             if j>0:
                 #if i !="/":
@@ -75,7 +76,7 @@ def drawnumbers(canvas,entrada,Colores,coordenadas,porte):
                 esDenominador=esDenominador2
             aux=i #termino anterior 
 
-def largodiv(indice,entrada):
+def largodiv(indice,entrada):  #cuenta el largo de los numeradores 
     signos=["+","*","/","-","(",")"]
     cont=0
     aux=False
@@ -111,13 +112,11 @@ def largodiv(indice,entrada):
     return cont
 #
 
-#Se puede hacer general si al ir hacia atras aumentas un contador cada que aparezca uno extra de cierre y se resta cada vez que aparezca otro
-#de apertura, una vez que el contador sea 0, corresponde al de cada uno
+#Cuenta que tantas divisiones hay dentro de un parentesis de apertura, esto para hacerlo del tamaño correcto
 def tamaniopa(cadena, indice):
     cont=indice
     contador=0
     aux1=0
-    print()
     while cont<len(cadena):
         if cadena[cont]=="/":
             contador+= 40
@@ -132,7 +131,7 @@ def tamaniopa(cadena, indice):
                 return contador
         cont+=1
     return 0
-def tamaniopc(cadena, indice):
+def tamaniopc(cadena, indice): #lo mismo que el de arriba pero para los parentesis de cierre
    # print()
     cont=indice
     contador=0
@@ -152,23 +151,3 @@ def tamaniopc(cadena, indice):
                 return contador
         cont-=1
     return 0
-
-#def bigpar(cadena):
-    #con el primer parentesis de apertura encontrar el ultimo parentesis de cierre que le corresponda, contar cuantas divisiones hay dentro 
-    #aumentar en 40 la altura por cada uno
-#    contapertura=0
-#    contcierre=0
-#    contap=[]
-#    contci=[]
-#    recorrido=0
-#    cont=0
-#    while recorrido<=len(cadena):
-#        if cadena[recorrido]=="(":
-#            contap.append([recorrido,contapertura+1])
-#        elif cadena[recorrido]==")":
-#            contci.append([recorrido,contcierre+1])
-#    for i in cadena:
-#        if i=="/":
-#            cont+=1
-#    return cont*40
-    

@@ -60,7 +60,7 @@ def add_caracter(caracter):
     global cadena
     global coordenadas
     global base
-    
+    global nventanaBot
         #si quereremos borrar solo eliminamos el ultimo termino de la lista
     if caracter=="<--":         
 
@@ -92,7 +92,7 @@ def add_caracter(caracter):
     if base=="Base 10":
         cadena=a_binario(cadena)    
     if base=="Binario":
-        cadena=cadenaIntegra
+        cadena=cadenaIntegra    
     entradaVentana.config(text=EntradaEnInterfaz(cadenaIntegra))
     if(caracter!="^"):
         canvas.delete("all")
@@ -346,7 +346,7 @@ def mostrar_botones():
         NewBotones.geometry("500x600")
         new_btnDel=tk.Button(NewBotones,text="<--",width=8,height=1,bg="#B1D0E6",fg="black",command=partial(add_caracter,"<--")).grid(row=0, column=9)
         new_btnRes=tk.Button(NewBotones,text="=",width=6,height=1,bg="#B1D0E6",fg="black",command=Resultado).grid(row=3, column=2)
-        new_entradaVentana=Label(NewBotones,text="Calculadora Pulenta",font=("consolas",16)).place(x=10,y=400)#contendra la entrada que se mostrará en la pantalla como texto
+        new_entradaVentana=Label(NewBotones,text="",font=("consolas",16)).place(x=10,y=400)#contendra la entrada que se mostrará en la pantalla como texto
         new_btnPot=tk.Button(NewBotones,text="^",width=6,height=1,bg="#B1D0E6",fg="black",command=partial(add_caracter,"^")).grid(row=1, column=6)
         new_btnParI=tk.Button(NewBotones,text="(",width=6,height=1,bg="#B1D0E6",fg="black",command=partial(add_caracter,"(")).grid(row=0, column=5)
         new_btnParD=tk.Button(NewBotones,text=")",width=6,height=1,bg="#B1D0E6",fg="black",command=partial(add_caracter,")")).grid(row=0, column=6)

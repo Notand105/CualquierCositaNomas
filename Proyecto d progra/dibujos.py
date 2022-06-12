@@ -88,7 +88,7 @@ def draw(canvas,caracter,desplazo,Colores,esDenominador,coordenadas,porte,divisi
             canvas.create_line(570-desplazo- aliniear(division,esDenominador),70+esDenominador-(elevado*3),600-desplazo- aliniear(division,esDenominador),70+esDenominador-(elevado*3),width=3,fill=checkif(Colores.colormas[1])) #linea del medio
 
     elif caracter=="/":
-        canvas.create_line(570-desplazo-(60*((division))),110-porte+esDenominador,610-desplazo,110-porte+esDenominador,width=3,fill=checkif(Colores.colordiv[1])) #linea diagonal derecha
+        canvas.create_line(570-desplazo-(60*((division))),110-porte+esDenominador-(elevado*3),610-desplazo,110-porte+esDenominador-(elevado*3),width=3,fill=checkif(Colores.colordiv[1])) #linea diagonal derecha
         #division si le comento el mover en drawincanvas
         #canvas.create_line(570-desplazo-(60*((division))),110-porte+esDenominador,610-desplazo,110-porte+esDenominador,width=3,fill=checkif(Colores.colordiv[1])) #linea diagonal derecha
 
