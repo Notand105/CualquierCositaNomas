@@ -274,7 +274,7 @@ def a_binario(cadena):
 
     #cadena2 contiene la cadena original pero transformada a binario
     for i in cadena:
-        if(i.isnumeric()):
+        if(i.isnumeric()): #recorrer cada elemento de la entrada, y los numeros cambiarlos a binario con la funcion que incluye pyhton y los operadores los dejas igual
             cadena2+=format(int(i),"b")
         else:
             cadena2+=i
@@ -405,7 +405,7 @@ def mostrar_botones():
         btnGrado.place(x=460,y=360)
         btnAC.place(x=380,y=410)
         entradaVentana.place(x=100,y=520)
-        btnParar.place(x=380,y=410)
+        btnParar.place(x=380,y=460)
         botones = "Ocultar Botones"
     opciones_menu.entryconfig(6,label=botones)
     add_caracter("pass")
