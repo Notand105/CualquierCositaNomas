@@ -410,6 +410,17 @@ def mostrar_botones():
     opciones_menu.entryconfig(6,label=botones)
     add_caracter("pass")
 
+def submit():
+    global cadena
+    inp = inputtxt.get(1.0, "end-1c")
+    inpxd= entrada.cget("text")+inp
+    entrada.config(text=inpxd)
+    cadena=inpxd
+    print(cadena)
+    print(entrada.cget("text"))
+    add_caracter("pass")
+    inputtxt.delete("1.0","end")
+
 new_entradaVentana=Label
 SizeNumeros=0
 nventanaSize=False
@@ -444,6 +455,7 @@ coordenadas="mostrar coordenadas"
 base="Binario"
 size="Cambiar tamaño"
 botones="Ocultar Botones"
+
 mymenu=Menu(window)
 window.config(menu=mymenu)
 
@@ -460,6 +472,7 @@ canvas.config(width=650,height=200)
 canvas.config(xscrollcommand=hbar.set, yscrollcommand=vbar.set)
 canvas.pack(side=LEFT,expand=True,fill=BOTH)
 
+inputtxt = tk.Text(window,height = 1,width = 30) #textbox para recibir los parametros de entrada
 btnRes=tk.Button(window,text="=",width=6,height=8,bg="#B1D0E6",fg="black",command=Resultado)
 entradaVentana=Label(window,text="Calculadora Pulenta",font=("consolas",16))#contendra la entrada que se mostrará en la pantalla como texto
 btnDel=tk.Button(window,text="<--",width=7,height=1,bg="#B1D0E6",fg="black",command=partial(add_caracter,"<--"))
@@ -488,6 +501,7 @@ btn2=tk.Button(window,text="2",width=6,height=1,bg="#B1D0E6",fg="black",command=
 btn1=tk.Button(window,text="1",width=6,height=1,bg="#B1D0E6",fg="black",command=partial(add_caracter,"1"))
 btn0=tk.Button(window,text="0",width=19,height=2,bg="#B1D0E6",fg="black",command=partial(add_caracter,"0"))
 btnAC=tk.Button(window,text="AC",width=6,height=1,bg="#B1D0E6",fg="black",command=partial(add_caracter,"AC"))
+btnSubmit=tk.Button(window,text="Agregar",width=6,height=1,bg="#B1D0E6",fg="black",command=submit)
 opciones_menu= Menu(mymenu)
 mymenu.add_cascade(label="Opciones",menu=opciones_menu)
 opcionColores=opciones_menu.add_command(label="Cambiar colores", command=cambiar_color)
@@ -524,6 +538,8 @@ btnTan.place(x=380,y=360)
 btnGrado.place(x=460,y=360)
 btnAC.place(x=380,y=410)
 btnParar.place(x=380,y=460)
+inputtxt.place(x=100,y=560)
+btnSubmit.place(x=450,y=560)
 
 entradaVentana.place(x=100,y=520)
  #--------------------------- Fin elementos de la calculadora-----------------------#   
