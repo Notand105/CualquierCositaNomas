@@ -4,7 +4,9 @@ from tkinter import *
 from dibujos import draw
 from colores import colores
 
-def drawnumbers(canvas,entrada,Colores,coordenadas,porte):
+def drawnumbers(canvas,entrada,Colores,coordenadas,porte): #Hace las validaciones necesarias para que se dibuje de manera correcta en el canvas
+    
+    #----------------------------Declaracion de variables----------------------------------
     j=0
     lastdiv=0
     alturadiv=90
@@ -18,51 +20,58 @@ def drawnumbers(canvas,entrada,Colores,coordenadas,porte):
     parsize=0
     mover=len(entrada)*(60-porte)
     esDenominador=0
+    #---------------------------------------------------------------------------------------
+    #pseudo limite de caracteres
     if len(entrada)>1000:
         canvas.create_text(180,50,text="Demasiados caracteres :c")
     else:
-        
         for i in entrada:
+            #-------------------------------------------------------------------------------------
+            #si el caracter que acaba de ser agregado es una division
             if i =="/":
-
-                
-                #if lastdiv>0:
-                #    mover=mover+60*(division-1)
-                #else:
-                mover=mover+60*(division)
-                division=largodiv(j,entrada)
+                mover=mover+60*(division)   #movemos la division para que se ponga bajo el numerador
+                division=largodiv(j,entrada)    #la variable division ayuda a que el denominador se ponga bajo el numerador
                 if(lastdiv!=0):
                     esDenominador=lastdiv
                     if(aux==")"):
-                        esDenominador+=2*tamaniopc(entrada,j-1)
-                    #mover2=mover
-                   # mover=mover+(60*4)
-                
+                        esDenominador+=2*tamaniopc(entrada,j-1)# da mas espacio a las divisiones 
+            #------------------------------------------------------------
+            #detecta cuando las operaciones están o no en parentesis
             if aux=="(":
                 inparentesis=True
                 inparentesiselevado=True
             if aux==")":
                 inparentesis=False
                 inparentesiselevado=False
+            #------------------------------------------------------------
+            #detecta cuando el termino anterior es un elevado, por lo tanto, los siguientes caracteres deberan ser escritos como potencias
             if aux=="^":
-                elevado=15
+                elevado=10
                 esDenominador2=esDenominador
-                if esDenominador>0:
-                    esDenominador=esDenominador-alturadiv
+                #if esDenominador>0:
+                #    esDenominador=esDenominador-alturadiv
+                #    if(entrada[j-4]=="/"):
+                #        esDenominador=esDenominador-alturadiv
+            #------------------------------------------------------------
+            #determina el fin del elevado
             elif i in signos and not(inparentesiselevado):
-                print("e0")
                 elevado=0
+            #------------------------------------------------------------
+            #mueve hacia la izquierda
             if j>0:
-                #if i !="/":
                     mover=mover-60
+            #------------------------------------------------------------
+            #determina lo que pasa cuando el caracter anterior fue una devision, es decir, estos son los denominadores
             if aux =="/":
                 esDenominador+=alturadiv
                 lastdiv=esDenominador
                 mover=mover+60
-                elevado=0
+                #elevado=0
             elif i in signos and not(inparentesis): 
                 esDenominador=0
                 lastdiv=0
+            #--------------------------------------------------------------------------------------------------
+            #determina el tamaño de los parentesis
             if (i=="("):
                 parsize=tamaniopa(entrada,j);
             if (i==")"):
@@ -70,6 +79,12 @@ def drawnumbers(canvas,entrada,Colores,coordenadas,porte):
                 esDenominador2=esDenominador
                 if esDenominador>0 and parsize>0:
                     esDenominador=esDenominador-alturadiv
+            #--------------------------------------------------------------------------------------------------
+            #detiene de emergencia el elevado
+            if (aux=="P"):
+                elevado=0
+            #-------------------------------------------------------------------------------------------------
+            #despues de todas las condiciones anteriores, manda el caracter y sus datos a la funcion de dibujar
             draw(canvas,i,mover,Colores,esDenominador,coordenadas,porte,division,elevado,parsize)
             j=j+1
             if aux=="^" or i==")":
@@ -81,15 +96,17 @@ def largodiv(indice,entrada):  #cuenta el largo de los numeradores
     cont=0
     aux=False
     aux2=0
-    #print(entrada[indice])
+    print(entrada[indice])
     if entrada[indice-1]==")":
         cont+=1
         aux=True
         aux2+=1
+        indice-=1
     indice-=1
     while indice>=0:
         if aux:
             if(entrada[indice]=="/"):
+                cont+=1
                 break
             if entrada[indice]==")":
                 aux2+=1
@@ -98,6 +115,7 @@ def largodiv(indice,entrada):  #cuenta el largo de los numeradores
             else:
                 aux2-=1
                 if(aux2==0):
+                    cont+=1
                     break
                 else:
                     cont+=1     
@@ -108,7 +126,7 @@ def largodiv(indice,entrada):  #cuenta el largo de los numeradores
                 break
                   
         indice-=1
-    #print(cont)
+    print(cont)
     return cont
 #
 

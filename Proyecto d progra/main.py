@@ -33,20 +33,19 @@ def on_closing():
 
 cadena=[]
 
-def is_number(c):
-    return c=="0" or c=="1" or c=="2" or c=="3" or c=="4" or c=="5" or c=="6" or c=="7" or c=="8" or c=="9" or "."
-
-def is_operator(c):
+def is_operator(c): #devuelve si es operador o no
     return c=="*" or c=="/" or  c=="-" or c=="+" or c=="^"
 
-def is_parentesis(c):
+def is_parentesis(c): #devuelve si es parentesis
     return c=="(" or c==")"
 
-def val_input(c):
+def val_input(c): #valida que la entrada sea coherente
     el = entrada.cget("text") # obtener la lista de caracteres de la calculadora.
     if(len(el) >= 1 and el[-1] == "("): return( c != ")" and not is_operator(c) ) or (c == "-")#validacion para no permitir el ingreso de parentesis de cierre y operadores despues de uno de apertura
+    if(len(el)>=1 and el[-1]==")" and c.isnumeric()):return False#no agregar numeros despues de un parentesis de cierre 
+    if(len(el)>=1 and el[-1].isnumeric() and c=="("):return False#no agregar numeros antes de un parentesis de apertura
     if(len(el)>=1 and (el[-1] =="s" or el[-1] =="c" or el[-1] =="t") and c!="(" ):return False
-    if(len(el)>=1 and el[-1]=="!" and not (is_number(c)) ):return True
+    if(len(el)>=1 and el[-1]=="!" and not (c.isnumeric()) ):return True
     if not (is_operator(c)): return True # si la entrada no es un operador, pintalo
     if(len(el) == 1 and is_operator(el[-1])): return False # si hay exatamente un elemento en la calculadora y es un operador, no pinta
     if(len(el) > 1 and is_operator(el[-1]) and is_operator(el[-2])): return False # si hay dos o mas elementos en la calculadora y los dos ultimos son operadores, no pinta
@@ -55,7 +54,7 @@ def val_input(c):
     if(el[-1] == c ): return  c=="-" # si el ultimo caracter es igual a la entrada, pinta solo si la entrada es "-"
     return True # pinta
 
-def add_caracter(caracter):
+def add_caracter(caracter): #Añade los nuevos caracteres a la interfaz
     global Colores
     global cadena
     global coordenadas
@@ -90,27 +89,29 @@ def add_caracter(caracter):
     #ya sea que eliminemos o agreguemos pasamos nuevamente la entrada a la funcion de dibujar numeros
     cadenaIntegra=entrada.cget("text")
     if base=="Base 10":
-        cadena=a_binario(cadena)    
+        cadena=a_binario(cadena)
     if base=="Binario":
-        cadena=cadenaIntegra    
+        cadena=cadenaIntegra
     entradaVentana.config(text=EntradaEnInterfaz(cadenaIntegra))
-    if(caracter!="^"):
-        canvas.delete("all")
-        drawnumbers(canvas, cadena,Colores,coordenadas,SizeNumeros) 
-        
+    if(caracter!="^" and caracter!="P"):
+        if(caracter!="^" and caracter!="P"):
+            canvas.delete("all")
+            drawnumbers(canvas, cadena,Colores,coordenadas,SizeNumeros) 
         canvas.configure(scrollregion = canvas.bbox("all"))
         if(caracter=="t" or caracter=="s" or caracter=="c"):add_caracter("(")
 
-def EntradaEnInterfaz(cadena):
+def EntradaEnInterfaz(cadena): #hace reemplazos parar que tenga sentido la salida de texto
     if "s" in cadena:
         cadena=[item.replace("s", "sin") for item in cadena] #remplaza las s por sin, para que se muestre bien en la salida de la interfaz
     if "c" in cadena:
         cadena=[item.replace("c", "cos") for item in cadena] #lo de arriba para coseno
     if "t" in cadena:
         cadena=[item.replace("t", "tan") for item in cadena] #lo de arriba para tangente
+    if "P" in cadena:
+        cadena=cadena.replace("P","")
     return cadena
     
-def comprobar():
+def comprobar(): #comprueba la logica de parentesis
     cont=0
     con2=0
     global cadena
@@ -180,7 +181,7 @@ def getColor(caracter):
     
     add_caracter("pass")
     
-def cambiar_color():
+def cambiar_color():        
     global nventana
     global Colores
     ####################################################
@@ -273,7 +274,7 @@ def a_binario(cadena):
 
     #cadena2 contiene la cadena original pero transformada a binario
     for i in cadena:
-        if(i.isnumeric()):
+        if(i.isnumeric()): #recorrer cada elemento de la entrada, y los numeros cambiarlos a binario con la funcion que incluye pyhton y los operadores los dejas igual
             cadena2+=format(int(i),"b")
         else:
             cadena2+=i
@@ -333,7 +334,8 @@ def mostrar_botones():
         btnTan.place_forget()
         btnGrado.place_forget()
         btnAC.place_forget()
-        entradaVentana.place_forget()
+        btnParar.place_forget()
+        entradaVentana.place(x=0, y=0)
         global nventanaBot
         global Colores
         ####################################################
@@ -344,9 +346,11 @@ def mostrar_botones():
         ###################################################
         NewBotones=Toplevel() #ventana para elegir colores
         NewBotones.geometry("500x600")
+        new_btnParar=tk.Button(NewBotones,text="ES",width=6,height=1,bg="#B1D0E6",fg="black",command=partial(add_caracter,"P")).grid(row=3, column=9)
+
         new_btnDel=tk.Button(NewBotones,text="<--",width=8,height=1,bg="#B1D0E6",fg="black",command=partial(add_caracter,"<--")).grid(row=0, column=9)
         new_btnRes=tk.Button(NewBotones,text="=",width=6,height=1,bg="#B1D0E6",fg="black",command=Resultado).grid(row=3, column=2)
-        new_entradaVentana=Label(NewBotones,text="",font=("consolas",16)).place(x=10,y=400)#contendra la entrada que se mostrará en la pantalla como texto
+        #new_entradaVentana=Label(NewBotones,text=entrada.cget("text"),font=("consolas",16)).place(x=10,y=400)#contendra la entrada que se mostrará en la pantalla como texto
         new_btnPot=tk.Button(NewBotones,text="^",width=6,height=1,bg="#B1D0E6",fg="black",command=partial(add_caracter,"^")).grid(row=1, column=6)
         new_btnParI=tk.Button(NewBotones,text="(",width=6,height=1,bg="#B1D0E6",fg="black",command=partial(add_caracter,"(")).grid(row=0, column=5)
         new_btnParD=tk.Button(NewBotones,text=")",width=6,height=1,bg="#B1D0E6",fg="black",command=partial(add_caracter,")")).grid(row=0, column=6)
@@ -401,10 +405,23 @@ def mostrar_botones():
         btnGrado.place(x=460,y=360)
         btnAC.place(x=380,y=410)
         entradaVentana.place(x=100,y=520)
+        btnParar.place(x=380,y=460)
         botones = "Ocultar Botones"
     opciones_menu.entryconfig(6,label=botones)
     add_caracter("pass")
 
+def submit():
+    global cadena
+    inp = inputtxt.get(1.0, "end-1c")
+    inpxd= entrada.cget("text")+inp
+    entrada.config(text=inpxd)
+    cadena=inpxd
+    print(cadena)
+    print(entrada.cget("text"))
+    add_caracter("pass")
+    inputtxt.delete("1.0","end")
+
+new_entradaVentana=Label
 SizeNumeros=0
 nventanaSize=False
 nventana=False
@@ -438,10 +455,9 @@ coordenadas="mostrar coordenadas"
 base="Binario"
 size="Cambiar tamaño"
 botones="Ocultar Botones"
+
 mymenu=Menu(window)
 window.config(menu=mymenu)
-
-
 
 frame=Frame(window,width=1000,height=100)
 frame.pack(expand=True, fill=BOTH) #.grid(row=0,column=0)
@@ -456,9 +472,11 @@ canvas.config(width=650,height=200)
 canvas.config(xscrollcommand=hbar.set, yscrollcommand=vbar.set)
 canvas.pack(side=LEFT,expand=True,fill=BOTH)
 
+inputtxt = tk.Text(window,height = 1,width = 30) #textbox para recibir los parametros de entrada
 btnRes=tk.Button(window,text="=",width=6,height=8,bg="#B1D0E6",fg="black",command=Resultado)
 entradaVentana=Label(window,text="Calculadora Pulenta",font=("consolas",16))#contendra la entrada que se mostrará en la pantalla como texto
 btnDel=tk.Button(window,text="<--",width=7,height=1,bg="#B1D0E6",fg="black",command=partial(add_caracter,"<--"))
+btnParar=tk.Button(window,text="ES",width=6,height=1,bg="#B1D0E6",fg="black",command=partial(add_caracter,"P"))
 btnPot=tk.Button(window,text="^",width=6,height=1,bg="#B1D0E6",fg="black",command=partial(add_caracter,"^"))
 btnParI=tk.Button(window,text="(",width=6,height=1,bg="#B1D0E6",fg="black",command=partial(add_caracter,"("))
 btnParD=tk.Button(window,text=")",width=6,height=1,bg="#B1D0E6",fg="black",command=partial(add_caracter,")"))
@@ -483,6 +501,7 @@ btn2=tk.Button(window,text="2",width=6,height=1,bg="#B1D0E6",fg="black",command=
 btn1=tk.Button(window,text="1",width=6,height=1,bg="#B1D0E6",fg="black",command=partial(add_caracter,"1"))
 btn0=tk.Button(window,text="0",width=19,height=2,bg="#B1D0E6",fg="black",command=partial(add_caracter,"0"))
 btnAC=tk.Button(window,text="AC",width=6,height=1,bg="#B1D0E6",fg="black",command=partial(add_caracter,"AC"))
+btnSubmit=tk.Button(window,text="Agregar",width=6,height=1,bg="#B1D0E6",fg="black",command=submit)
 opciones_menu= Menu(mymenu)
 mymenu.add_cascade(label="Opciones",menu=opciones_menu)
 opcionColores=opciones_menu.add_command(label="Cambiar colores", command=cambiar_color)
@@ -518,6 +537,9 @@ btnCoseno.place(x=460,y=310)
 btnTan.place(x=380,y=360)
 btnGrado.place(x=460,y=360)
 btnAC.place(x=380,y=410)
+btnParar.place(x=380,y=460)
+inputtxt.place(x=100,y=560)
+btnSubmit.place(x=450,y=560)
 
 entradaVentana.place(x=100,y=520)
  #--------------------------- Fin elementos de la calculadora-----------------------#   
