@@ -411,15 +411,37 @@ def mostrar_botones():
     add_caracter("pass")
 
 def submit():
+    signos=["+","*","/","!","^"]
     global cadena
-    inp = inputtxt.get(1.0, "end-1c")
-    inpxd= entrada.cget("text")+inp
+    inp = inputtxt.get(1.0, "end-1c")   #toma el texto ingresado en el textbox
+    if(len(cadena)==0 and inp[0] in signos):
+        return
+    inpxd= entrada.cget("text")+inp #agrega el texto del textbox con el texto anterior
+    #if(len(cadena)>=1):
+    #    print(cadena[-1] in signos)
+    #    print(inp[0])
+    if(len(cadena)>=1 and cadena[-1] in signos and inp[0] in signos ):  
+        return
+    if(not valsub(inp)):
+        return
     entrada.config(text=inpxd)
     cadena=inpxd
-    print(cadena)
-    print(entrada.cget("text"))
     add_caracter("pass")
     inputtxt.delete("1.0","end")
+
+def valsub(cad):
+    signos=["+","*","/","!","^"]
+    axu=True
+    cont=0
+    for i in cad:
+        print(i)
+        if(cont>=1):
+            print(cad[cont]," ",cad[cont-1] )
+            if(cad[cont] in signos and cad[cont-1] in signos):
+                axu=False
+        cont+=1
+    return axu
+
 
 new_entradaVentana=Label
 SizeNumeros=0
