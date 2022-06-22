@@ -1,7 +1,6 @@
 import java.util.Random;
-public class quicksort2 {
-     public static void main(String[] args) 
-  {
+public class quicksort {
+
 	   public static void main(String[] args) 
   {
         //------------------------------------------ Variables ------------------------------------------------------------
@@ -9,17 +8,19 @@ public class quicksort2 {
 	long fin=0;
 	double tiempo=0;
         //las 3 variables de arriba cuentan el tiempo de ejecucion de los codigos
-	int top=1000000;
-        int pruebas=10;
-        int[] array = new int[top]; 
+  // top cambia el tamaño del arreglo
+	    int top=100;
+      //pruebas cambia la cantidad de pruebas que se hacen
+      int pruebas=10;
+      int[] array = new int[top]; 
         //_----------------------------------------- Fin Variables --------------------------------------------------------
         
         // arrelgo desordenado
-	shuffle(array, top);
+	      shuffle(array, top);
 	
 //----- Descomentar esta seccion para calcular el tiempo promedio de un algoritmo, cambiar top para definir el tamaño del arreglo y pruebas para
         //----- definir el numero de pruebas a realizar
-        
+        /* 
         double[] results= new double[100];
         int check=0;
         for (int j=0;j<pruebas;j++){
@@ -39,20 +40,21 @@ public class quicksort2 {
             cont+=results[r];
         }
         System.out.print("QuickSort Normal con "+top+" elementos: "+cont/pruebas+" milisegundos de tiempo promedio en "+(check+1)+" pruebas");
-        
+        */
 //------------------------------------------------------------------------------------------------------------------------------------------------
         
 //-------- Descomentar esta seccion para ver la cantidad de tiempo que toman  los 4 algorimos en ordenar un arreglo----------------------
         
+//descomentar las funciones printa para que se impriman los arreglos, asegurarse de que el tamaño de los arreglos no sea demasiado alto o la salida será ilegible
         
-/*
+
         System.out.print("QuickSort Normal : ");
 	inicio = System.currentTimeMillis();
         quickSort0( array, 0, array.length - 1 );
 	fin = System.currentTimeMillis();
         tiempo = (double) ((fin - inicio));  
         System.out.print(tiempo +" milisegundos");
-        //printa(array);
+  //      printa(array);
         System.out.println();
 	shuffle(array, top);
         
@@ -62,7 +64,7 @@ public class quicksort2 {
 	fin = System.currentTimeMillis();
 	tiempo = (double) ((fin - inicio));
         System.out.print(tiempo +" milisegundos");
-        //printa(array);
+   //     printa(array);
 	System.out.println();
         
 	shuffle(array, top);
@@ -73,7 +75,7 @@ public class quicksort2 {
 	fin = System.currentTimeMillis();
 	tiempo = (double) ((fin - inicio));
         System.out.print(tiempo +" milisegundos");
-        //printa(array);
+  //      printa(array);
 	System.out.println();
 
 	shuffle(array, top);
@@ -84,10 +86,10 @@ public class quicksort2 {
 	fin = System.currentTimeMillis();
 	tiempo = (double) ((fin - inicio));
         System.out.print(tiempo +" milisegundos");
-        //printa(array);
+  //      printa(array);
 	System.out.println();
       
-*/        
+        
 //---------------------------------------------------------------------------------------------------------------------------------------------------
   }
  //------------------------------------------------------ Quicksort Normal ------------------------------------------------------------------------------
