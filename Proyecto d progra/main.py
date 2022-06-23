@@ -446,10 +446,19 @@ def valsub(cad):
     return axu
 
 def Cambiar_orden(orden):
-     parseTree.parse(entrada.cget("text"))
+     global orden_bool
+     if(not orden_bool):
+        orden_bool=True
+        entradaSafe.config(text=entrada.cget("text"))
+        print(entradaSafe.cget("text"))
+     #else:
+     #   entrada.config(text=entradaSafe.cget("text"))
+     #   orden_bool=False
+     #if(orden!="infijo"):
+     #    Cambiar_orden("infijo")     
+     parseTree.parse(entradaSafe.cget("text"))
      if(orden=="infijo"):
-         a=parseTree.toInfixNotation()
-         a=a.replace(' ','')
+         a=entradaSafe.cget("text")
          entrada.config(text=a)
      elif(orden=="sufijo"):
          a=parseTree.toPolishNotation()
@@ -492,12 +501,13 @@ bar.place(x=100,y=300)
 #-------------------------- elementos de la calculadora (botones, etiquetas, etc...) 
 
 entrada=Label(window,text="") #entrada tendra todos 
+entradaSafe=Label(window,text="")#copia de seguridad
 Modo="Clasico" #guarda el modo del programa
 coordenadas="mostrar coordenadas" 
 base="Binario"
 size="Cambiar tamaño"
 botones="Ocultar Botones"
-orden="infijo"
+orden_bool=False
 
 mymenu=Menu(window)
 window.config(menu=mymenu)
