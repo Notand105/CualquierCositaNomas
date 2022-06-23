@@ -14,6 +14,9 @@ import tkinter as tk
 from functools import partial #permite pasar parametros a las funciones de los bottones
 from drawincanvas import drawnumbers #importamos nuestra propia libreria que dibujara los numeros
 import os #Permite usar el path para rutas no relativas.
+#import para el 
+import expressionparse
+
 from colores import colores
 #funcion para mostrar la barra de progreso en la pantalla de inicio
 def iniciar():
@@ -442,7 +445,24 @@ def valsub(cad):
         cont+=1
     return axu
 
+def Cambiar_orden(orden):
+     parseTree.parse(entrada.cget("text"))
+     if(orden=="infijo"):
+         a=parseTree.toInfixNotation()
+         a=a.replace(' ','')
+         entrada.config(text=a)
+     elif(orden=="sufijo"):
+         a=parseTree.toPolishNotation()
+         a=a.replace(' ','')
+         entrada.config(text=a)
+     elif(orden =="xdijo"):
+         a=parseTree.toReversePolishNotation()
+         a=a.replace(' ','')
+         entrada.config(text=a)
+     add_caracter("pass")
 
+
+parseTree= expressionparse.Tree()
 new_entradaVentana=Label
 SizeNumeros=0
 nventanaSize=False
@@ -477,6 +497,7 @@ coordenadas="mostrar coordenadas"
 base="Binario"
 size="Cambiar tamaño"
 botones="Ocultar Botones"
+orden="infijo"
 
 mymenu=Menu(window)
 window.config(menu=mymenu)
@@ -532,6 +553,9 @@ opciones_menu.add_command(label=coordenadas,command=mostrar_coordenadas)
 opciones_menu.add_command(label=base,command=cambio_base)
 opciones_menu.add_command(label=size,command=cambioSize)
 opciones_menu.add_command(label=botones,command=mostrar_botones)
+opciones_menu.add_command(label="infijo",command=partial(Cambiar_orden,"infijo"))
+opciones_menu.add_command(label="sufijo",command=partial(Cambiar_orden,"sufijo"))
+opciones_menu.add_command(label="xdijo",command=partial(Cambiar_orden,"xdijo"))
 canvas.pack()
 btnDel.place(x=280,y=410)
 btn13.place(x=280,y=210)
