@@ -20,6 +20,7 @@ def drawnumbers(canvas,entrada,Colores,coordenadas,porte): #Hace las validacione
     parsize=0
     mover=len(entrada)*(60-porte)
     esDenominador=0
+    inRaiz=[1,0]
     #---------------------------------------------------------------------------------------
     #pseudo limite de caracteres
     if len(entrada)>1000:
@@ -79,13 +80,17 @@ def drawnumbers(canvas,entrada,Colores,coordenadas,porte): #Hace las validacione
                 esDenominador2=esDenominador
                 if esDenominador>0 and parsize>0:
                     esDenominador=esDenominador-alturadiv
+            if (i=="√"):
+                inRaiz[0]=tamanioRaiz(entrada,j)[0]
+                inRaiz[1]=tamanioRaiz(entrada,j)[1]
+                print(inRaiz)
             #--------------------------------------------------------------------------------------------------
             #detiene de emergencia el elevado
             if (aux=="P"):
                 elevado=0
             #-------------------------------------------------------------------------------------------------
             #despues de todas las condiciones anteriores, manda el caracter y sus datos a la funcion de dibujar
-            draw(canvas,i,mover,Colores,esDenominador,coordenadas,porte,division,elevado,parsize)
+            draw(canvas,i,mover,Colores,esDenominador,coordenadas,porte,division,elevado,parsize,inRaiz)
             j=j+1
             if aux=="^" or i==")":
                 esDenominador=esDenominador2
@@ -169,3 +174,18 @@ def tamaniopc(cadena, indice): #lo mismo que el de arriba pero para los parentes
                 return contador
         cont-=1
     return 0
+
+def tamanioRaiz(cadena,indice):
+    cont=indice
+    contador=0
+    contadordiv=0
+    while cont<len(cadena):
+        if(cadena[cont]=="/"):
+            contadordiv+=1
+        if(cadena[cont]!=")"):
+            contador+=1
+            
+        if(cadena[cont]==")"):
+            return [contador+1,contadordiv*40]
+        cont+=1
+    return [contador+1,contadordiv*40]

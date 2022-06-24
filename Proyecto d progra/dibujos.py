@@ -6,7 +6,7 @@ from colores import colores #recomiendo modularizar es decir separar por carpeta
 
 #Dibujar en el canvas dependiendo del caracter recibido
 
-def draw(canvas,caracter,desplazo,Colores,esDenominador,coordenadas,porte,division,elevado,parsize):
+def draw(canvas,caracter,desplazo,Colores,esDenominador,coordenadas,porte,division,elevado,parsize,inraiz):
     if caracter=="1":
         
         canvas.create_line(600-desplazo- aliniear(division,esDenominador),40+porte+esDenominador-(elevado*2),600-desplazo- aliniear(division,esDenominador),70-porte+esDenominador-(elevado*2),width=3,fill=checkif(Colores.color1[1])) #linea derecha arriba
@@ -206,6 +206,10 @@ def draw(canvas,caracter,desplazo,Colores,esDenominador,coordenadas,porte,divisi
         canvas.create_line(580-desplazo- aliniear(division,esDenominador),60+esDenominador-(elevado*3),580-desplazo- aliniear(division,esDenominador),100+esDenominador-(elevado*3),width=3,fill=checkif(Colores.colorTan[1]))
     elif caracter=="°":
         canvas.create_oval(580-desplazo- aliniear(division,esDenominador), 40+esDenominador-(elevado*3), 590-desplazo- aliniear(division,esDenominador), 50+esDenominador-(elevado*3), width=2,outline=checkif(Colores.colorpunt[1]))
+    elif caracter=="√":
+            canvas.create_line(570-desplazo- aliniear(division,esDenominador),70+porte+esDenominador-(elevado*2),580-desplazo- aliniear(division,esDenominador),110+porte+esDenominador-(elevado*2)+inraiz[1],width=3,fill=checkif(Colores.color7[1])) #linea arriba
+            canvas.create_line(580-desplazo- aliniear(division,esDenominador),110+porte+esDenominador-(elevado*2)+inraiz[1],600-desplazo- aliniear(division,esDenominador),15-porte+esDenominador-(elevado*3),width=3,fill=checkif(Colores.color7[1])) #linea derecha arriba
+            canvas.create_line(600-desplazo- aliniear(division,esDenominador),15-porte+esDenominador-(elevado*3),600-desplazo- aliniear(division,esDenominador)+50*inraiz[0],15-porte+esDenominador-(elevado*3),width=3,fill=checkif(Colores.color7[1])) #linea derecha abajo
     else:
 
         #canvas.create_text(180,50,text="No implementado aun")

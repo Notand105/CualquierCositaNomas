@@ -14,8 +14,7 @@ import tkinter as tk
 from functools import partial #permite pasar parametros a las funciones de los bottones
 from drawincanvas import drawnumbers #importamos nuestra propia libreria que dibujara los numeros
 import os #Permite usar el path para rutas no relativas.
-#import para el 
-import expressionparse
+
 
 from colores import colores
 #funcion para mostrar la barra de progreso en la pantalla de inicio
@@ -85,6 +84,11 @@ def add_caracter(caracter): #Añade los nuevos caracteres a la interfaz
         cadena+=caracter
     elif caracter=="pass":
         pass
+    elif caracter=="√":
+        if(len(entrada.cget("text"))==0): entrada.config(text=entrada.cget("text")+"(")
+        elif(len(entrada.cget("text"))>=1 and entrada.cget("text")[-1]!="("):
+            entrada.config(text=entrada.cget("text")+"(")
+        entrada.config(text=entrada.cget("text")+caracter)
     else:
         if (val_input(caracter)): 
             entrada.config(text=entrada.cget("text")+caracter) #agregamos el boton presionado a la lista de caracteres ingresado
@@ -445,33 +449,7 @@ def valsub(cad):
         cont+=1
     return axu
 
-def Cambiar_orden(orden):
-     global orden_bool
-     if(not orden_bool):
-        orden_bool=True
-        entradaSafe.config(text=entrada.cget("text"))
-        print(entradaSafe.cget("text"))
-     #else:
-     #   entrada.config(text=entradaSafe.cget("text"))
-     #   orden_bool=False
-     #if(orden!="infijo"):
-     #    Cambiar_orden("infijo")     
-     parseTree.parse(entradaSafe.cget("text"))
-     if(orden=="infijo"):
-         a=entradaSafe.cget("text")
-         entrada.config(text=a)
-     elif(orden=="sufijo"):
-         a=parseTree.toPolishNotation()
-         a=a.replace(' ','')
-         entrada.config(text=a)
-     elif(orden =="xdijo"):
-         a=parseTree.toReversePolishNotation()
-         a=a.replace(' ','')
-         entrada.config(text=a)
-     add_caracter("pass")
 
-
-parseTree= expressionparse.Tree()
 new_entradaVentana=Label
 SizeNumeros=0
 nventanaSize=False
@@ -538,6 +516,7 @@ btnSeno=tk.Button(window,text="sen()",width=6,height=1,bg="#B1D0E6",fg="black",c
 btnCoseno=tk.Button(window,text="cos()",width=6,height=1,bg="#B1D0E6",fg="black",command=partial(add_caracter,"c"))
 btnTan=tk.Button(window,text="Tan()",width=6,height=1,bg="#B1D0E6",fg="black",command=partial(add_caracter,"t"))
 btnGrado=tk.Button(window,text="°",width=6,height=1,bg="#B1D0E6",fg="black",command=partial(add_caracter,"°"))
+btnRaiz=tk.Button(window,text="√",width=6,height=1,bg="#B1D0E6",fg="black",command=partial(add_caracter,"√"))
 btn13=tk.Button(window,text="+",width=6,height=1,bg="#B1D0E6",fg="black",command=partial(add_caracter,"+"))
 btn12=tk.Button(window,text="-",width=6,height=1,bg="#B1D0E6",fg="black",command=partial(add_caracter,"-"))
 btn11=tk.Button(window,text="*",width=6,height=1,bg="#B1D0E6",fg="black",command=partial(add_caracter,"*"))
@@ -563,9 +542,7 @@ opciones_menu.add_command(label=coordenadas,command=mostrar_coordenadas)
 opciones_menu.add_command(label=base,command=cambio_base)
 opciones_menu.add_command(label=size,command=cambioSize)
 opciones_menu.add_command(label=botones,command=mostrar_botones)
-opciones_menu.add_command(label="infijo",command=partial(Cambiar_orden,"infijo"))
-opciones_menu.add_command(label="sufijo",command=partial(Cambiar_orden,"sufijo"))
-opciones_menu.add_command(label="xdijo",command=partial(Cambiar_orden,"xdijo"))
+
 canvas.pack()
 btnDel.place(x=280,y=410)
 btn13.place(x=280,y=210)
@@ -593,6 +570,7 @@ btnCoseno.place(x=460,y=310)
 btnTan.place(x=380,y=360)
 btnGrado.place(x=460,y=360)
 btnAC.place(x=380,y=410)
+btnRaiz.place(x=460,y=410)
 btnParar.place(x=380,y=460)
 inputtxt.place(x=100,y=560)
 btnSubmit.place(x=450,y=560)
