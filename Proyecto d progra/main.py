@@ -14,7 +14,8 @@ import tkinter as tk
 from functools import partial #permite pasar parametros a las funciones de los bottones
 from drawincanvas import drawnumbers #importamos nuestra propia libreria que dibujara los numeros
 import os #Permite usar el path para rutas no relativas.
-
+#libreria de cambio de orden
+import expressionparse
 
 from colores import colores
 #funcion para mostrar la barra de progreso en la pantalla de inicio
@@ -449,7 +450,26 @@ def valsub(cad):
         cont+=1
     return axu
 
+def Cambiar_orden(orden):
+    global did
+    #cambiar de orden la cadena
+    #añadir la cadena nueva al canvas de dibujo
+    if(did):
+        entradaSafe.config(text=entrada.cget("text"))
+        did=False
+    cOrden.parse(entradaSafe.cget("text"))
+    if(orden=="infijo"):
+         a=entradaSafe.cget("text")
+         entrada.config(text=a)
+         did=True
+    elif(orden=="prefijo"):
+        a=cOrden.toPolishNotation()
+        a=a.replace(' ','')
+        entrada.config(text=a)
+    add_caracter("pass")
 
+did=True
+cOrden=expressionparse.Tree()
 new_entradaVentana=Label
 SizeNumeros=0
 nventanaSize=False
@@ -542,7 +562,8 @@ opciones_menu.add_command(label=coordenadas,command=mostrar_coordenadas)
 opciones_menu.add_command(label=base,command=cambio_base)
 opciones_menu.add_command(label=size,command=cambioSize)
 opciones_menu.add_command(label=botones,command=mostrar_botones)
-
+opciones_menu.add_command(label="infijo",command=partial(Cambiar_orden,"infijo"))
+opciones_menu.add_command(label="prefijo",command=partial(Cambiar_orden,"prefijo"))
 canvas.pack()
 btnDel.place(x=280,y=410)
 btn13.place(x=280,y=210)
