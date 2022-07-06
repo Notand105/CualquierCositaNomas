@@ -57,6 +57,7 @@ public class Tarea4
 
         System.out.println("ABB Normal: "+(tiempoFin-tiempoIni)+ "ms");
 
+
         tiempoIni = System.currentTimeMillis();
         for(int i = 0; i < entrada.length; i++)
         {
