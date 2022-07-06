@@ -1,12 +1,6 @@
 package tarea4;
-import java.io.BufferedReader;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
 import java.io.IOException;
-import java.util.Scanner;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-
+import java.util.Random;
 public class Tarea4
 {
 
@@ -20,43 +14,42 @@ public class Tarea4
         //creamos arbol binario con mediana de 3
 		ArbolBinarioMediana arbolM3 = new ArbolBinarioMediana();//arbol binario con mediana de 3
 			
-		int num = Integer.parseInt(args[0]);//cantidad de numeros a leer
-
-		int n = (int)num*(int)Math.pow(10, 6);
-			
-		int[] llavesNoPertenecientes = new int[5000000];
+		int num = Integer.parseInt(args[0]);//cantidad de numeros a agregar al arbol
+        if(num<500000){
+            num=500001;
+        } //hace que el minimo de numeros a agregar sean 500.001
 		
-        BufferedReader bf = null;
-        try
-        {
-            bf = new BufferedReader(new FileReader(args[1]));
-        }
-        catch (FileNotFoundException ex)
-        {
-            Logger.getLogger(Tarea4.class.getName()).log(Level.SEVERE, null, ex);
+        int[] entrada = new int[num];// tendrá los n elementos a agregar
+        //llena la entrada de elementos inapares entre 1 y 2*num
+        for (int i=0;i<entrada.length;i++){
+            entrada[i]=2*(i+1)-1;
         }
 
-        int k = 0;
-        String llave;
-        while ((llave = bf.readLine()) != null) 
-        {
-            llavesNoPertenecientes[k] = Integer.parseInt(llave);
-            k++;
-        }		
-
-        int[] entrada = new int[n];//guardamos los numeros en un arreglo
+        Random rand = new Random();
 		
-        Scanner sc = new Scanner(System.in);
-        
-        for(int i = 0; i < n; i++)//llenamos el arreglo con la entrada
-        {
-            entrada[i] = sc.nextInt();
+        //desordenamos el arreglo de entrada para que no quede un arbol desbalanceado
+		for (int i = 0; i < entrada.length; i++) {
+			int randomIndexToSwap = rand.nextInt(entrada.length);
+			int temp = entrada[randomIndexToSwap];
+			entrada[randomIndexToSwap] = entrada[i];
+			entrada[i] = temp;
+		}
+
+        //llenamos con numeros impares, entre 1 y 1 millon, 1 millon será siempre menor a 2*num por lo tanto todos estos existiran en la entrada
+		int[] NumerosDentro = new int[500000];
+        for (int i=0;i<NumerosDentro.length;i++){
+            NumerosDentro[i]=2*(i+1)-1;
+        }
+        //llenamos con numeros pares entre 1 y 1 millon , al ser pares estos no existen en el arbol
+        int[] NumerosFuera = new int[500000];
+        for (int i=0;i<NumerosFuera.length;i++){
+            NumerosFuera[i]=2*(i);
         }
         
-        System.out.println("\n>>> Tiempo de insercion de "+n+ " llaves");
+        System.out.println("\n>>> Tiempo de insercion de "+num+ " llaves");
 
         tiempoIni = System.currentTimeMillis();
-        for(int i = 0; i < n; i++)
+        for(int i = 0; i < entrada.length; i++)
         {
             arbol.insertar(entrada[i]);
         }
@@ -65,7 +58,7 @@ public class Tarea4
         System.out.println("ABB Normal: "+(tiempoFin-tiempoIni)+ "ms");
 
         tiempoIni = System.currentTimeMillis();
-        for(int i = 0; i < n; i++)
+        for(int i = 0; i < entrada.length; i++)
         {
             arbolM3.insertar(entrada[i]);
         }
@@ -81,18 +74,18 @@ public class Tarea4
         System.out.println("\n>>> Tiempo de busqueda de 500000 llaves que pertenecen al arbol");
 
         tiempoIni = System.currentTimeMillis();
-        for(int i = (n-1); i > 500000; i--)
+        for(int i = 0; i<NumerosDentro.length; i++)
         {
-            arbol.buscar(entrada[i]);
+            arbol.buscar(NumerosDentro[i]);
         }
         tiempoFin = System.currentTimeMillis();
 
         System.out.println("ABB Normal: "+(tiempoFin-tiempoIni)+ "ms");
 
         tiempoIni = System.currentTimeMillis();
-        for(int i = (n-1); i > 500000; i--)
+        for(int i = 0; i<NumerosDentro.length; i++)
         {
-            arbolM3.buscar(entrada[i]);
+            arbolM3.buscar(NumerosDentro[i]);
         }
         tiempoFin = System.currentTimeMillis();
 
@@ -101,18 +94,18 @@ public class Tarea4
         System.out.println("\n>>> Tiempo de busqueda de 500000 llaves que no pertenecen al arbol");
 
         tiempoIni = System.currentTimeMillis();
-        for(int i = 0; i < 500000; i++)
+        for(int i = 0; i < NumerosFuera.length; i++)
         {
-            arbol.buscar(llavesNoPertenecientes[i]);
+            arbol.buscar(NumerosFuera[i]);
         }
         tiempoFin = System.currentTimeMillis();
 
         System.out.println("ABB Normal: "+(tiempoFin-tiempoIni)+ "ms");
 
         tiempoIni = System.currentTimeMillis();
-        for(int i = 0; i < 500000; i++)
+        for(int i = 0; i < NumerosFuera.length; i++)
         {
-            arbolM3.buscar(llavesNoPertenecientes[i]);
+            arbolM3.buscar(NumerosFuera[i]);
         }
         tiempoFin = System.currentTimeMillis();
 
@@ -121,18 +114,18 @@ public class Tarea4
         System.out.println("\n>>> Tiempo de eliminacion de 500000 llaves que pertenecen al arbol");
 
         tiempoIni = System.currentTimeMillis();
-        for(int i = 0; i < 500000; i++)
+        for(int i = 0; i < NumerosDentro.length; i++)
         {
-            arbol.eliminar(entrada[i]);
+            arbol.eliminar(NumerosDentro[i]);
         }
         tiempoFin = System.currentTimeMillis();
 
         System.out.println("ABB Normal: "+(tiempoFin-tiempoIni)+ "ms");
 
         tiempoIni = System.currentTimeMillis();
-        for(int i = 0; i < 500000; i++)
+        for(int i = 0; i < NumerosDentro.length; i++)
         {
-            arbolM3.eliminar(entrada[i]);
+            arbolM3.eliminar(NumerosDentro[i]);
         }
         tiempoFin = System.currentTimeMillis();
 
